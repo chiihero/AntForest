@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="基本配置"
+            android:background="#FF898989"
+            android:textColor="#FFFFFFFF"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="立即生效"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_immediateEffect" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="记录日志"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_recordLog" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="显示Toast"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_showToast" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="保持唤醒"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_stayAwake" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="自动重启服务"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_autoRestart" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="蚂蚁森林配置"
+            android:background="#FF898989"
+            android:textColor="#FFFFFFFF"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="收集能量"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_collectEnergy" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="检查间隔（分钟）"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_checkInterval"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="线程数"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_threadCount"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="提前时间（毫秒）"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_advanceTime"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="收集间隔（毫秒）"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_collectInterval"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="收集超时（秒）"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_collectTimeout"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="返回浇水30"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_returnWater30"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="返回浇水20"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_returnWater20"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="返回浇水10"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_returnWater10"
+            android:paddingLeft="8dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="帮助朋友收集能量"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_helpFriendCollect" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="不收能量的列表"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_dontCollectList"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="不帮忙收能量的列表"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_dontHelpCollectList"
+            android:paddingLeft="8dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="获得森林任务奖"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_receiveForestTaskAward" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="帮浇水的好友列表"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_waterFriendList"
+            android:paddingLeft="8dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="森林合种"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_cooperateWater" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="森林合种好友列表"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_cooperateWaterList"
+            android:paddingLeft="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="蚂蚁庄园配置"
+            android:background="#FF898989"
+            android:textColor="#FFFFFFFF"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="启用蚂蚁庄园"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_enableFarm" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打赏好友"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_rewardFriend" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="赶鸡"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_sendBackAnimal" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="赶鸡方式"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_sendType"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="不赶鸡的好友列表"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_dontSendFriendList"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="召回小鸡方式"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_recallAnimalType"
+            android:paddingLeft="8dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="领取道具卡奖励"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_receiveFarmToolReward" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用新蛋卡"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_useNewEggTool" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="收取爱心鸡蛋"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_harvestProduce" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="捐赠爱心鸡蛋"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_donation" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="答题"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_answerQuestion" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="领取庄园任务奖励"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_receiveFarmTaskAward" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="喂鸡"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_feedAnimal" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="使用加速卡"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_useAccelerateTool" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="帮好友喂鸡列表"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_feedFriendAnimalList"
+            android:paddingLeft="8dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="通知好友赶鸡"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_notifyFriend" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="不通知赶鸡的好友列表"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_dontNotifyFriendList"
+            android:paddingLeft="8dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="其他配置"
+            android:background="#FF898989"
+            android:textColor="#FFFFFFFF"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="领取蚂蚁会员积分"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_receivePoint" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="开启运动线路宝箱"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_openTreasureBox" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="捐足球场"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_donateCharityCoin" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="最少捐步步数"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_minExchangeCount"
+            android:paddingLeft="8dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="最晚捐步时间(24小时)"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_latestExchangeTime"
+            android:paddingLeft="8dp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="口碑签到"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:id="@+id/cb_kbSignIn" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="更多"
+            android:background="#FF898989"
+            android:textColor="#FFFFFFFF"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle"
+            android:text="支持开发人员"
+            android:textAllCaps="false"
+            android:onClick="onClick"
+            android:minHeight="50dp"
+            android:gravity="left|center_vertical"
+            android:background="@drawable/button"
+            android:id="@+id/btn_donation_developer"
+            android:paddingLeft="8dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
