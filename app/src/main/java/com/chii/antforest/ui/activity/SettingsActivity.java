@@ -293,6 +293,7 @@ public class SettingsActivity extends Activity {
             case R.id.cb_kbSignIn:
                 Config.setKbSginIn(cb.isChecked());
                 break;
+            default:
         }
     }
 

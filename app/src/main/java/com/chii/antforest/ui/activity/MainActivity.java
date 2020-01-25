@@ -52,25 +52,34 @@ public class MainActivity extends Activity {
         String data = "file://";
         switch (v.getId()) {
             case R.id.btn_forest_log:
-                data += FileUtils.getForestLogFile().getAbsolutePath();
+                data = FileUtils.getForestLogFile().getAbsolutePath();
                 break;
 
             case R.id.btn_farm_log:
-                data += FileUtils.getFarmLogFile().getAbsolutePath();
+                data = FileUtils.getFarmLogFile().getAbsolutePath();
                 break;
 
             case R.id.btn_other_log:
-                data += FileUtils.getOtherLogFile().getAbsolutePath();
+                data = FileUtils.getOtherLogFile().getAbsolutePath();
                 break;
 
             case R.id.btn_help:
-                data = "https://github.com/pansong291/AntForest/wiki";
-                break;
+                data = "https://github.com/chiihero/AntForest";
+                //从其他浏览器打开
+                Intent intent = new Intent();
+                intent.setAction(Intent.ACTION_VIEW);
+                Uri content_url = Uri.parse(data);
+                intent.setData(content_url);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+                return;
             default:
         }
-        Intent it = new Intent(this, HtmlViewerActivity.class);
-        it.setData(Uri.parse(data));
-        startActivity(it);
+        Intent intent = new Intent();
+        intent.putExtra("file", data);
+        intent.setClass(MainActivity.this, LogActivity.class);
+        startActivity(intent);
     }
 
     @Override
