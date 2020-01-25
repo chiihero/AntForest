@@ -1,11 +1,11 @@
 package com.chii.antforest.ui;
 
+import com.chii.antforest.util.FriendIdMap;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import com.chii.antforest.util.FriendIdMap;
 
 public class AlipayUser extends AlipayId {
     private static List<AlipayUser> list;

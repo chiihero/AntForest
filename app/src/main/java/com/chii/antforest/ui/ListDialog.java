@@ -17,12 +17,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.List;
-
 import com.chii.antforest.R;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.CooperationIdMap;
 import com.chii.antforest.util.FriendIdMap;
+
+import java.util.List;
 
 public class ListDialog {
     static AlertDialog listDialog;
@@ -40,7 +40,8 @@ public class ListDialog {
     static AlertDialog optionsDialog;
     static AlertDialog deleteDialog;
 
-    public static void show(Context c, CharSequence title, List<?> bl, List<String> sl, List<Integer> cl) {
+    public static void show(Context c, CharSequence title, List<?> bl, List<String> sl,
+                            List<Integer> cl) {
         selectedList = sl;
         countList = cl;
         ListAdapter la = ListAdapter.get(c);
@@ -235,18 +236,23 @@ public class ListDialog {
                                     String url = null;
                                     switch (p2) {
                                         case 0:
-                                            url = "alipays://platformapi/startapp?saId=10000007&qrcode=https%3A%2F%2F60000002.h5app.alipay.com%2Fwww%2Fhome.html%3FuserId%3D";
+                                            url = "alipays://platformapi/startapp?saId=10000007" +
+                                                    "&qrcode=https%3A%2F%2F60000002.h5app.alipay" +
+                                                    ".com%2Fwww%2Fhome.html%3FuserId%3D";
                                             break;
 
                                         case 1:
-                                            url = "alipays://platformapi/startapp?saId=10000007&qrcode=https%3A%2F%2F66666674.h5app.alipay.com%2Fwww%2Findex.htm%3Fuid%3D";
+                                            url = "alipays://platformapi/startapp?saId=10000007" +
+                                                    "&qrcode=https%3A%2F%2F66666674.h5app.alipay" +
+                                                    ".com%2Fwww%2Findex.htm%3Fuid%3D";
                                             break;
 
                                         case 2:
                                             showDeleteDialog(c);
                                     }
                                     if (url != null && !url.isEmpty()) {
-                                        Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(url + curAlipayId.id));
+                                        Intent it = new Intent(Intent.ACTION_VIEW,
+                                                Uri.parse(url + curAlipayId.id));
                                         c.startActivity(it);
                                     }
                                 }

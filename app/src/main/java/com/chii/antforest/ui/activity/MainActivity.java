@@ -2,8 +2,6 @@ package com.chii.antforest.ui.activity;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.ContentResolver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -17,38 +15,37 @@ import android.widget.Toast;
 
 import com.chii.antforest.R;
 import com.chii.antforest.util.AppUtils;
+import com.chii.antforest.util.ContextUtil;
 import com.chii.antforest.util.FileUtils;
 import com.chii.antforest.util.Log;
 import com.chii.antforest.util.RandomUtils;
 import com.chii.antforest.util.Statistics;
 
-import de.robv.android.xposed.XposedBridge;
-
 public class MainActivity extends Activity {
     private static String[] strArray;
-    TextView tv_statistics;
-    Button btn_help;
+    TextView tvStatistics;
+    Button btnHelp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setModuleActive(false);
+        //全局context
+        ContextUtil.context = this.getApplicationContext();
 
-        tv_statistics = findViewById(R.id.tv_statistics);
-        btn_help = findViewById(R.id.btn_help);
+        tvStatistics = findViewById(R.id.tv_statistics);
+        btnHelp = findViewById(R.id.btn_help);
         if (strArray == null) {
             strArray = getResources().getStringArray(R.array.sentences);
         }
-        if (strArray != null) {
-            btn_help.setText(strArray[RandomUtils.nextInt(0, strArray.length)]);
-        }
+        btnHelp.setText(strArray[RandomUtils.nextInt(0, strArray.length)]);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        tv_statistics.setText(Statistics.getText());
+        tvStatistics.setText(Statistics.getText());
     }
 
     public void onClick(View v) {
@@ -67,8 +64,9 @@ public class MainActivity extends Activity {
                 break;
 
             case R.id.btn_help:
-                data = "https://github.com/pansong291/XQuickEnergy/wiki";
+                data = "https://github.com/pansong291/AntForest/wiki";
                 break;
+            default:
         }
         Intent it = new Intent(this, HtmlViewerActivity.class);
         it.setData(Uri.parse(data));
@@ -78,52 +76,61 @@ public class MainActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         int state = getPackageManager()
-                .getComponentEnabledSetting(new ComponentName(this, getClass().getCanonicalName() + "Alias"));
-        menu.add(0, 1, 0, "Hide the application icon")
-                .setCheckable(true)
-                .setChecked(state > PackageManager.COMPONENT_ENABLED_STATE_ENABLED);
-        menu.add(0, 2, 0, "Export the statistic file");
-        menu.add(0, 3, 0, "Import the statistic file");
-        menu.add(0, 4, 0, "Settings");
-        return super.onCreateOptionsMenu(menu);
+                .getComponentEnabledSetting(new ComponentName(this,
+                        getClass().getCanonicalName() + "Alias"));
+//        menu.add(0, 1, 0, "Hide the application icon")
+//                .setCheckable(true)
+//                .setChecked(state > PackageManager.COMPONENT_ENABLED_STATE_ENABLED);
+//        menu.add(0, 2, 0, "Export the statistic file");
+//        menu.add(0, 3, 0, "Import the statistic file");
+//        menu.add(0, 4, 0, "Settings");
+//        return super.onCreateOptionsMenu(menu);
+
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        menu.findItem(R.id.action_hide).setChecked(state > PackageManager.COMPONENT_ENABLED_STATE_ENABLED);
+        return true;
+
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case 1:
-                int state = item.isChecked() ? PackageManager.COMPONENT_ENABLED_STATE_DEFAULT : PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
-                getPackageManager()
-                        .setComponentEnabledSetting(new ComponentName(this, getClass().getCanonicalName() + "Alias"), state, PackageManager.DONT_KILL_APP);
+            case R.id.action_hide:
+                int state = item.isChecked() ? PackageManager.COMPONENT_ENABLED_STATE_DEFAULT :
+                        PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
+                getPackageManager().setComponentEnabledSetting(new ComponentName(this,getClass().getCanonicalName() + "Alias"), state,PackageManager.DONT_KILL_APP);
                 item.setChecked(!item.isChecked());
                 break;
 
-            case 2:
-                if (FileUtils.copyTo(FileUtils.getStatisticsFile(), FileUtils.getExportedStatisticsFile())) {
-                    Toast.makeText(this, "Export success", 0).show();
+            case R.id.action_export:
+                if (FileUtils.copyTo(FileUtils.getStatisticsFile(),
+                        FileUtils.getExportedStatisticsFile())) {
+                    Toast.makeText(this, "Export success", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
-            case 3:
-                if (FileUtils.copyTo(FileUtils.getExportedStatisticsFile(), FileUtils.getStatisticsFile())) {
-                    tv_statistics.setText(Statistics.getText());
-                    Toast.makeText(this, "Import success", 0).show();
+            case R.id.action_import:
+                if (FileUtils.copyTo(FileUtils.getExportedStatisticsFile(),
+                        FileUtils.getStatisticsFile())) {
+                    tvStatistics.setText(Statistics.getText());
+                    Toast.makeText(this, "Import success", Toast.LENGTH_SHORT).show();
                 }
                 break;
 
-            case 4:
+            case R.id.action_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 break;
+            default:
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void setModuleActive(boolean moduleActive) {
         moduleActive = moduleActive || AppUtils.isExpModuleActive(this);
-        Log.i("HookLogic","HookLogic >> current package:" + moduleActive);
+        Log.i("HookLogic", "HookLogic >> current package:" + moduleActive);
         TextView tvUnactive = findViewById(R.id.tv_unactive);
         tvUnactive.setVisibility(moduleActive ? View.GONE : View.VISIBLE);
     }
-    
+
 
 }

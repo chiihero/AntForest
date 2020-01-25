@@ -83,7 +83,7 @@ public class FriendIdMap {
             if (ind > 0) {
                 n = n.substring(0, ind);
             }
-            if (!n.equals("*")) {
+            if (!"*".equals(n)) {
                 return n;
             }
         } else {
@@ -96,7 +96,7 @@ public class FriendIdMap {
         List<String> idList = new ArrayList<String>();
         Set idSet = getIdMap().entrySet();
         for (Object o : idSet) {
-                Map.Entry entry = (Map.Entry) o;
+            Map.Entry entry = (Map.Entry) o;
             if (entry.getValue().toString().contains("(*)")) {
                 idList.add(entry.getKey().toString());
             }

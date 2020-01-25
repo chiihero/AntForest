@@ -1,8 +1,5 @@
 package com.chii.antforest.task;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.chii.antforest.hook.AntCooperateRpcCall;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.CooperationIdMap;
@@ -10,6 +7,9 @@ import com.chii.antforest.util.FriendIdMap;
 import com.chii.antforest.util.Log;
 import com.chii.antforest.util.RandomUtils;
 import com.chii.antforest.util.Statistics;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class AntCooperate {
     private static final String TAG = AntCooperate.class.getCanonicalName();
@@ -38,20 +38,22 @@ public class AntCooperate {
                         s = AntCooperateRpcCall.rpcCall_queryUserCooperatePlantList(loader);
                     }
                     JSONObject jo = new JSONObject(s);
-                    if (jo.getString("resultCode").equals("SUCCESS")) {
+                    if ("SUCCESS".equals(jo.getString("resultCode"))) {
                         int userCurrentEnergy = jo.getInt("userCurrentEnergy");
                         JSONArray ja = jo.getJSONArray("cooperatePlants");
                         for (int i = 0; i < ja.length(); i++) {
                             jo = ja.getJSONObject(i);
                             String cooperationId = jo.getString("cooperationId");
                             if (!jo.has("name")) {
-                                s = AntCooperateRpcCall.rpcCall_queryCooperatePlant(loader, cooperationId);
+                                s = AntCooperateRpcCall.rpcCall_queryCooperatePlant(loader,
+                                        cooperationId);
                                 jo = new JSONObject(s).getJSONObject("cooperatePlant");
                             }
                             String name = jo.getString("name");
                             int waterDayLimit = jo.getInt("waterDayLimit");
                             CooperationIdMap.putIdMap(cooperationId, name);
-                            if (!Statistics.canCooperateWaterToday(FriendIdMap.currentUid, cooperationId)) {
+                            if (!Statistics.canCooperateWaterToday(FriendIdMap.currentUid,
+                                    cooperationId)) {
                                 continue;
                             }
                             int index = -1;
@@ -70,7 +72,8 @@ public class AntCooperate {
                                     num = userCurrentEnergy;
                                 }
                                 if (num > 0) {
-                                    cooperateWater(loader, FriendIdMap.currentUid, cooperationId, num, name);
+                                    cooperateWater(loader, FriendIdMap.currentUid, cooperationId,
+                                            num, name);
                                 }
                             }
                         }
@@ -86,11 +89,12 @@ public class AntCooperate {
         }.setData(loader).start();
     }
 
-    private static void cooperateWater(ClassLoader loader, String uid, String coopId, int count, String name) {
+    private static void cooperateWater(ClassLoader loader, String uid, String coopId, int count,
+                                       String name) {
         try {
             String s = AntCooperateRpcCall.rpcCall_cooperateWater(loader, uid, coopId, count);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 Log.forest("合种【" + name + "】" + jo.getString("barrageText"));
                 Statistics.cooperateWaterToday(FriendIdMap.currentUid, coopId);
             } else {

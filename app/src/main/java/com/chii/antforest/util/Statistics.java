@@ -132,18 +132,18 @@ public class Statistics {
     public static String getText() {
         statistics = null;
         Statistics stat = getStatistics();
-        StringBuilder sb = new StringBuilder("year " + getData(TimeType.YEAR, DataType.TIME) + " : collect ");
+        StringBuilder sb = new StringBuilder(getData(TimeType.YEAR, DataType.TIME)+" 年 : 收集 ");
         sb.append(getData(TimeType.YEAR, DataType.COLLECTED));
-        sb.append(",   help " + getData(TimeType.YEAR, DataType.HELPED));
-        sb.append(",   water " + getData(TimeType.YEAR, DataType.WATERED));
-        sb.append("\nmonth " + getData(TimeType.MONTH, DataType.TIME) + " : collect ");
+        sb.append(",   帮助 " + getData(TimeType.YEAR, DataType.HELPED));
+        sb.append(",   浇水 " + getData(TimeType.YEAR, DataType.WATERED)+"\n");
+        sb.append(getData(TimeType.MONTH, DataType.TIME) + " 月  : 收集 ");
         sb.append(getData(TimeType.MONTH, DataType.COLLECTED));
-        sb.append(",   help " + getData(TimeType.MONTH, DataType.HELPED));
-        sb.append(",   water " + getData(TimeType.MONTH, DataType.WATERED));
-        sb.append("\nday " + getData(TimeType.DAY, DataType.TIME) + " : collect ");
+        sb.append(",   帮助 " + getData(TimeType.MONTH, DataType.HELPED));
+        sb.append(",   浇水 " + getData(TimeType.MONTH, DataType.WATERED)+"\n");
+        sb.append(getData(TimeType.DAY, DataType.TIME) +" 日  : 收集 ");
         sb.append(getData(TimeType.DAY, DataType.COLLECTED));
-        sb.append(",   help " + getData(TimeType.DAY, DataType.HELPED));
-        sb.append(",   water " + getData(TimeType.DAY, DataType.WATERED));
+        sb.append(",   帮助 " + getData(TimeType.DAY, DataType.HELPED));
+        sb.append(",   浇水 " + getData(TimeType.DAY, DataType.WATERED));
         if (stat.questionHint != null && !stat.questionHint.isEmpty()) {
             sb.append("\nquestion hint : " + stat.questionHint);
         }
@@ -567,7 +567,8 @@ public class Statistics {
     }
 
     private static boolean save() {
-        return FileUtils.write2File(statistics2Json(getStatistics()), FileUtils.getStatisticsFile());
+        return FileUtils.write2File(statistics2Json(getStatistics()),
+                FileUtils.getStatisticsFile());
     }
 
 }

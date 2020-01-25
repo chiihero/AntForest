@@ -8,7 +8,8 @@ public class AntCooperateRpcCall {
     public static String rpcCall_queryUserCooperatePlantList(ClassLoader loader) {
         try {
             String args1 = "[{}]";
-            return RpcCall.invoke(loader, "alipay.antmember.forest.h5.queryUserCooperatePlantList", args1);
+            return RpcCall.invoke(loader, "alipay.antmember.forest.h5" +
+                    ".queryUserCooperatePlantList", args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCall_queryUserCooperatePlantList err:");
             Log.printStackTrace(TAG, t);
@@ -27,7 +28,8 @@ public class AntCooperateRpcCall {
         return null;
     }
 
-    public static String rpcCall_cooperateWater(ClassLoader loader, String uid, String coopId, int count) {
+    public static String rpcCall_cooperateWater(ClassLoader loader, String uid, String coopId,
+                                                int count) {
         try {
             String args1 = "[{\"bizNo\":\"" + uid + "_" + coopId + "_" + System.currentTimeMillis()
                     + "\",\"cooperationId\":\"" + coopId + "\",\"energyCount\":" + count + "}]";

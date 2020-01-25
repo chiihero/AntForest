@@ -63,20 +63,18 @@ public class HtmlViewerActivity extends Activity {
                 it.setDataAndType(getIntent().getData(), "text/html");
                 startActivity(Intent.createChooser(it, "Choose a browser"));
                 break;
-
             case 2:
                 ClipboardManager cm = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
                 cm.setText(mWebView.getUrl());
-                Toast.makeText(this, "Copy success", 0).show();
+                Toast.makeText(this, "Copy success", Toast.LENGTH_SHORT).show();
                 break;
-
             case 3:
                 mWebView.scrollTo(0, 0);
                 break;
-
             case 4:
                 mWebView.scrollToBottom();
                 break;
+            default:
         }
         return true;
     }

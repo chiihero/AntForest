@@ -31,7 +31,8 @@ public class AntSportsRpcCall {
         return null;
     }
 
-    public static String rpcCall_go(ClassLoader loader, String day, String rankCacheKey, int stepCount) {
+    public static String rpcCall_go(ClassLoader loader, String day, String rankCacheKey,
+                                    int stepCount) {
         try {
             String args1 = "[{\"chInfo\":\"" + chInfo + "\",\"day\":\"" + day
                     + "\",\"needAllBox\":true,\"rankCacheKey\":\"" + rankCacheKey
@@ -48,7 +49,8 @@ public class AntSportsRpcCall {
         try {
             String args1 = "[{\"boxNo\":\"" + boxNo + "\",\"chInfo\":\""
                     + chInfo + "\",\"userId\":\"" + userId + "\"}]";
-            return RpcCall.invoke(loader, "alipay.antsports.walk.treasureBox.openTreasureBox", args1);
+            return RpcCall.invoke(loader, "alipay.antsports.walk.treasureBox.openTreasureBox",
+                    args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCall_openTreasureBox err:");
             Log.printStackTrace(TAG, t);
@@ -68,7 +70,8 @@ public class AntSportsRpcCall {
         return null;
     }
 
-    public static String rpcCall_donate(ClassLoader loader, int donateCharityCoin, String projectId) {
+    public static String rpcCall_donate(ClassLoader loader, int donateCharityCoin,
+                                        String projectId) {
         try {
             String args1 = "[{\"chInfo\":\"" + chInfo + "\",\"donateCharityCoin\":"
                     + donateCharityCoin + ",\"projectId\":\"" + projectId + "\"}]";

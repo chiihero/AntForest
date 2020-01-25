@@ -1,12 +1,12 @@
 package com.chii.antforest.task;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.chii.antforest.hook.AntMemberRpcCall;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.Log;
 import com.chii.antforest.util.Statistics;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class AntMember {
     public static final String TAG = AntMember.class.getCanonicalName();
@@ -30,7 +30,7 @@ public class AntMember {
                     if (Statistics.canMemberSignInToday()) {
                         String s = AntMemberRpcCall.rpcCall_memberSignin(loader);
                         JSONObject jo = new JSONObject(s);
-                        if (jo.getString("resultCode").equals("SUCCESS")) {
+                        if ("SUCCESS".equals(jo.getString("resultCode"))) {
                             Log.other(
                                     "领取〈每日签到〉〈" + jo.getString("signinPoint") +
                                             "积分〉，已签到〈" + jo.getString("signinSumDay") + "天〉");
@@ -53,7 +53,7 @@ public class AntMember {
         try {
             String s = AntMemberRpcCall.rpcCall_queryPointCert(loader, page, pageSize);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 boolean hasNextPage = jo.getBoolean("hasNextPage");
                 JSONArray jaCertList = jo.getJSONArray("certList");
                 for (int i = 0; i < jaCertList.length(); i++) {
@@ -63,7 +63,7 @@ public class AntMember {
                     int pointAmount = jo.getInt("pointAmount");
                     s = AntMemberRpcCall.rpcCall_receivePointByUser(loader, id);
                     jo = new JSONObject(s);
-                    if (jo.getString("resultCode").equals("SUCCESS")) {
+                    if ("SUCCESS".equals(jo.getString("resultCode"))) {
                         Log.other("领取〈" + bizTitle + "〉〈" + pointAmount + "积分〉");
                     } else {
                         Log.recordLog(jo.getString("resultDesc"), s);
@@ -99,10 +99,12 @@ public class AntMember {
                             jo = ja.getJSONObject(i);
                             String bizTitle = jo.getString("bizTitle");
                             long certId = jo.getLong("certId");
-                            s = AntMemberRpcCall.rpcCall_claimFamilyPointCert(loader, certId, familyId);
+                            s = AntMemberRpcCall.rpcCall_claimFamilyPointCert(loader, certId,
+                                    familyId);
                             jo = new JSONObject(s);
                             if (jo.getBoolean("success")) {
-                                Log.other("领取〈" + bizTitle + "〉〈" + jo.getInt("realPoint") + "家庭积分〉");
+                                Log.other("领取〈" + bizTitle + "〉〈" + jo.getInt("realPoint") +
+                                        "家庭积分〉");
                             } else {
                                 Log.recordLog(jo.getString("resultDesc"), s);
                             }

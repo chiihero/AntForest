@@ -2,13 +2,13 @@ package com.chii.antforest.hook;
 
 import android.content.Intent;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
-import com.chii.antforest.task.AntForestToast;
 import com.chii.antforest.pojo.ClassMember;
+import com.chii.antforest.task.AntForestToast;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.Log;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class RpcCall {
     private static final String TAG = RpcCall.class.getCanonicalName();
@@ -20,8 +20,10 @@ public class RpcCall {
     public static String invoke(ClassLoader loader, String args0, String args1) {
         if (rpcCallMethod == null) {
             try {
-                Class<?> rpcClazz = loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_NEBULABIZ_RPC_H5RPCUTIL);
-                Class<?> h5PageClazz = loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
+                Class<?> rpcClazz =
+                        loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_NEBULABIZ_RPC_H5RPCUTIL);
+                Class<?> h5PageClazz =
+                        loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
                 Class<?> jsonClazz = loader.loadClass(ClassMember.COM_ALIBABA_FASTJSON_JSONOBJECT);
                 rpcCallMethod = rpcClazz.getMethod(
                         ClassMember.rpcCall, String.class, String.class, String.class,
@@ -35,9 +37,12 @@ public class RpcCall {
 
             if (rpcCallMethod == null) {
                 try {
-                    Class<?> h5PageClazz = loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
-                    Class<?> jsonClazz = loader.loadClass(ClassMember.COM_ALIBABA_FASTJSON_JSONOBJECT);
-                    Class<?> rpcClazz = loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_NEBULAAPPPROXY_API_RPC_H5RPCUTIL);
+                    Class<?> h5PageClazz =
+                            loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
+                    Class<?> jsonClazz =
+                            loader.loadClass(ClassMember.COM_ALIBABA_FASTJSON_JSONOBJECT);
+                    Class<?> rpcClazz =
+                            loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_NEBULAAPPPROXY_API_RPC_H5RPCUTIL);
                     rpcCallMethod = rpcClazz.getMethod(
                             ClassMember.rpcCall, String.class, String.class, String.class,
                             boolean.class, jsonClazz, String.class, boolean.class, h5PageClazz,
@@ -52,14 +57,14 @@ public class RpcCall {
 
         try {
             Object o = null;
-            switch (rpcCallMethod.getParameterTypes().length) {
-                case 12:
-                    o = rpcCallMethod.invoke(
-                            null, args0, args1, "", true, null, null, false, curH5PageImpl, 0, "", false, -1);
-                    break;
-                default:
-                    o = rpcCallMethod.invoke(
-                            null, args0, args1, "", true, null, null, false, curH5PageImpl, 0, "", false, -1, "");
+            if (rpcCallMethod.getParameterTypes().length == 12) {
+                o = rpcCallMethod.invoke(
+                        null, args0, args1, "", true, null, null, false, curH5PageImpl, 0, "",
+                        false, -1);
+            } else {
+                o = rpcCallMethod.invoke(
+                        null, args0, args1, "", true, null, null, false, curH5PageImpl, 0, "",
+                        false, -1, "");
             }
             String str = getResponse(o);
             Log.i(TAG, "argument: " + args0 + ", " + args1);
@@ -75,13 +80,14 @@ public class RpcCall {
                     it.putExtra("data", Config.xedgeproData());
                     AntForestToast.context.sendBroadcast(it);
                     Log.recordLog(t.getCause().getMessage() + ",发送XposedEdgePro广播", "");
+
                 }
             }
         }
         return null;
     }
 
-    public static String getResponse(Object resp) {
+    private static String getResponse(Object resp) {
         try {
             if (getResponseMethod == null) {
                 getResponseMethod = resp.getClass().getMethod(ClassMember.getResponse);

@@ -9,9 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.List;
-
 import com.chii.antforest.R;
+
+import java.util.List;
 
 public class ListAdapter extends BaseAdapter {
     private static ListAdapter adapter;

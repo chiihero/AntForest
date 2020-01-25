@@ -24,17 +24,19 @@ public class FileUtils {
 
     private static File getAndroidDirectoryFile() {
         if (androidDirectory == null) {
-            androidDirectory = new File(Environment.getExternalStorageDirectory(), "Android");
+            androidDirectory = new File(Environment.getExternalStorageDirectory(), "AntForest");
         }
+        checkPathStatus(androidDirectory);
         return androidDirectory;
     }
 
     private static File getConfigDirectoryFile() {
-        if (configDirectory == null) {
-            configDirectory = new File(getAndroidDirectoryFile(), "data/com.chii.antforest");
-        }
-        if (!configDirectory.exists()) {
-            configDirectory.mkdirs();
+        if (ContextUtil.context != null) {
+            configDirectory = ContextUtil.context.getExternalFilesDir(null);
+        } else if (configDirectory == null) {
+            configDirectory = new File(Environment.getExternalStorageDirectory(), "Android/data" +
+                    "/com.chii.antforest/files");
+            checkPathStatus(configDirectory);
         }
         return configDirectory;
 
@@ -230,6 +232,16 @@ public class FileUtils {
     private static void checkFileStatus(File file) {
         if (file.exists() && file.isDirectory()) {
             file.delete();
+        }
+    }
+
+    //判断文件不能为文件夹
+    private static void checkPathStatus(File file) {
+        if (!file.exists()) {
+            file.mkdirs();
+        } else if (file.exists() && file.isFile()) {
+            file.delete();
+            file.mkdirs();
         }
     }
 }

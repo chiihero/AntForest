@@ -1,12 +1,12 @@
 package com.chii.antforest.util;
 
+import com.chii.antforest.task.AntFarm.SendType;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.chii.antforest.task.AntFarm.SendType;
 
 public class Config {
     public enum RecallAnimalType {
@@ -24,26 +24,40 @@ public class Config {
     private static final String TAG = Config.class.getCanonicalName();
     public static final String
             /* application */
-            jn_immediateEffect = "immediateEffect", jn_recordLog = "recordLog", jn_showToast = "showToast",
-            jn_stayAwake = "stayAwake", jn_autoRestart = "autoRestart", jn_xedgeproData = "xedgeproData",
+            jn_immediateEffect = "immediateEffect", jn_recordLog = "recordLog", jn_showToast =
+            "showToast",
+            jn_stayAwake = "stayAwake", jn_autoRestart = "autoRestart", jn_xedgeproData =
+            "xedgeproData",
     /* forest */
-    jn_collectEnergy = "collectEnergy", jn_ReturnWater30 = "returnWater30", jn_ReturnWater20 = "returnWater20",
-            jn_ReturnWater10 = "returnWater10", jn_helpFriendCollect = "helpFriendCollect", jn_dontCollectList = "dontCollectList",
-            jn_dontHelpCollectList = "dontHelpCollectList", jn_checkInterval = "checkInterval", jn_threadCount = "threadCount",
-            jn_advanceTime = "advanceTime", jn_collectInterval = "collectInterval", jn_collectTimeout = "collectTimeout",
-            jn_receiveForestTaskAward = "receiveForestTaskAward", jn_waterFriendList = "waterFriendList",
+    jn_collectEnergy = "collectEnergy", jn_ReturnWater30 = "returnWater30", jn_ReturnWater20 =
+            "returnWater20",
+            jn_ReturnWater10 = "returnWater10", jn_helpFriendCollect = "helpFriendCollect",
+            jn_dontCollectList = "dontCollectList",
+            jn_dontHelpCollectList = "dontHelpCollectList", jn_checkInterval = "checkInterval",
+            jn_threadCount = "threadCount",
+            jn_advanceTime = "advanceTime", jn_collectInterval = "collectInterval",
+            jn_collectTimeout = "collectTimeout",
+            jn_receiveForestTaskAward = "receiveForestTaskAward", jn_waterFriendList =
+            "waterFriendList",
             jn_cooperateWater = "cooperateWater", jn_cooperateWaterList = "cooperateWaterList",
     /* farm */
     jn_enableFarm = "enableFarm",
-            jn_rewardFriend = "rewardFriend", jn_sendBackAnimal = "sendBackAnimal", jn_sendType = "sendType",
-            jn_dontSendFriendList = "dontSendFriendList", jn_recallAnimalType = "recallAnimalType", jn_receiveFarmToolReward = "receiveFarmToolReward",
-            jn_useNewEggTool = "useNewEggTool", jn_harvestProduce = "harvestProduce", jn_donation = "donation",
-            jn_answerQuestion = "answerQuestion", jn_receiveFarmTaskAward = "receiveFarmTaskAward", jn_feedAnimal = "feedAnimal",
-            jn_useAccelerateTool = "useAccelerateTool", jn_feedFriendAnimalList = "feedFriendAnimalList", jn_notifyFriend = "notifyFriend",
+            jn_rewardFriend = "rewardFriend", jn_sendBackAnimal = "sendBackAnimal", jn_sendType =
+            "sendType",
+            jn_dontSendFriendList = "dontSendFriendList", jn_recallAnimalType = "recallAnimalType"
+            , jn_receiveFarmToolReward = "receiveFarmToolReward",
+            jn_useNewEggTool = "useNewEggTool", jn_harvestProduce = "harvestProduce",
+            jn_donation = "donation",
+            jn_answerQuestion = "answerQuestion", jn_receiveFarmTaskAward = "receiveFarmTaskAward"
+            , jn_feedAnimal = "feedAnimal",
+            jn_useAccelerateTool = "useAccelerateTool", jn_feedFriendAnimalList =
+            "feedFriendAnimalList", jn_notifyFriend = "notifyFriend",
             jn_dontNotifyFriendList = "dontNotifyFriendList",
     /* other */
-    jn_receivePoint = "receivePoint", jn_openTreasureBox = "openTreasureBox", jn_donateCharityCoin = "donateCharityCoin",
-            jn_minExchangeCount = "minExchangeCount", jn_latestExchangeTime = "latestExchangeTime", jn_kbSignIn = "kbSignIn";
+    jn_receivePoint = "receivePoint", jn_openTreasureBox = "openTreasureBox",
+            jn_donateCharityCoin = "donateCharityCoin",
+            jn_minExchangeCount = "minExchangeCount", jn_latestExchangeTime = "latestExchangeTime"
+            , jn_kbSignIn = "kbSignIn";
 
     public static boolean shouldReload;
     public static boolean hasChanged;
@@ -726,7 +740,8 @@ public class Config {
                 }
             }
 
-            config.recallAnimalType = RecallAnimalType.valueOf(jo.optString(jn_recallAnimalType, RecallAnimalType.ALWAYS.name()));
+            config.recallAnimalType = RecallAnimalType.valueOf(jo.optString(jn_recallAnimalType,
+                    RecallAnimalType.ALWAYS.name()));
             Log.i(TAG, jn_recallAnimalType + ":" + config.recallAnimalType.name());
 
             config.receiveFarmToolReward = jo.optBoolean(jn_receiveFarmToolReward, true);
@@ -972,54 +987,6 @@ public class Config {
         } catch (Throwable t) {
             return jo.toString();
         }
-        if (!removeQuote) {
-            return formated;
-        }
-        StringBuilder sb = new StringBuilder(formated);
-        char currentChar, lastNonSpaceChar = 0;
-        for (int i = 0; i < sb.length(); i++) {
-            currentChar = sb.charAt(i);
-            switch (currentChar) {
-                case '"':
-                    switch (lastNonSpaceChar) {
-                        case ':':
-                        case '[':
-                            sb.deleteCharAt(i);
-                            i = sb.indexOf("\"", i);
-                            sb.deleteCharAt(i);
-                            if (lastNonSpaceChar != '[') {
-                                lastNonSpaceChar = sb.charAt(--i);
-                            }
-                    }
-                    break;
-
-                case ' ':
-                    break;
-
-                default:
-                    if (lastNonSpaceChar == '[' && currentChar != ']') {
-                        break;
-                    }
-                    lastNonSpaceChar = currentChar;
-            }
-        }
-        formated = sb.toString();
         return formated;
     }
-
-    private static String removeOutcomment(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        sbi:
-        for (int i = 0; i < sb.length(); i++) {
-            if (sb.charAt(i) == '\n') {
-                int nextNL = sb.indexOf("\n", i + 1),
-                        outcoI = sb.indexOf("//", i + 1);
-                if (i < outcoI && outcoI < nextNL) {
-                    sb.delete(i--, nextNL);
-                }
-            }
-        }
-        return sb.toString();
-    }
-
 }

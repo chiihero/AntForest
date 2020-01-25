@@ -138,7 +138,8 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_collectInterval:
-                EditDialog.showEditDialog(this, btn.getText(), EditDialog.EditMode.COLLECT_INTERVAL);
+                EditDialog.showEditDialog(this, btn.getText(),
+                        EditDialog.EditMode.COLLECT_INTERVAL);
                 break;
 
             case R.id.btn_collectTimeout:
@@ -162,11 +163,13 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_dontCollectList:
-                ListDialog.show(this, btn.getText(), AlipayUser.getList(), Config.getDontCollectList(), null);
+                ListDialog.show(this, btn.getText(), AlipayUser.getList(),
+                        Config.getDontCollectList(), null);
                 break;
 
             case R.id.btn_dontHelpCollectList:
-                ListDialog.show(this, btn.getText(), AlipayUser.getList(), Config.getDontHelpCollectList(), null);
+                ListDialog.show(this, btn.getText(), AlipayUser.getList(),
+                        Config.getDontHelpCollectList(), null);
                 break;
 
             case R.id.cb_receiveForestTaskAward:
@@ -174,7 +177,8 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_waterFriendList:
-                ListDialog.show(this, btn.getText(), AlipayUser.getList(), Config.getWaterFriendList(), Config.getWaterCountList());
+                ListDialog.show(this, btn.getText(), AlipayUser.getList(),
+                        Config.getWaterFriendList(), Config.getWaterCountList());
                 break;
 
             case R.id.cb_cooperateWater:
@@ -182,7 +186,8 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_cooperateWaterList:
-                ListDialog.show(this, btn.getText(), AlipayCooperate.getList(), Config.getCooperateWaterList(), Config.getcooperateWaterNumList());
+                ListDialog.show(this, btn.getText(), AlipayCooperate.getList(),
+                        Config.getCooperateWaterList(), Config.getcooperateWaterNumList());
                 break;
 
             case R.id.cb_enableFarm:
@@ -202,7 +207,8 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_dontSendFriendList:
-                ListDialog.show(this, btn.getText(), AlipayUser.getList(), Config.getDontSendFriendList(), null);
+                ListDialog.show(this, btn.getText(), AlipayUser.getList(),
+                        Config.getDontSendFriendList(), null);
                 break;
 
             case R.id.btn_recallAnimalType:
@@ -242,7 +248,8 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_feedFriendAnimalList:
-                ListDialog.show(this, btn.getText(), AlipayUser.getList(), Config.getFeedFriendAnimalList(), Config.getFeedFriendCountList());
+                ListDialog.show(this, btn.getText(), AlipayUser.getList(),
+                        Config.getFeedFriendAnimalList(), Config.getFeedFriendCountList());
                 break;
 
             case R.id.cb_notifyFriend:
@@ -250,7 +257,8 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_dontNotifyFriendList:
-                ListDialog.show(this, btn.getText(), AlipayUser.getList(), Config.getDontNotifyFriendList(), null);
+                ListDialog.show(this, btn.getText(), AlipayUser.getList(),
+                        Config.getDontNotifyFriendList(), null);
                 break;
 
             case R.id.cb_receivePoint:
@@ -258,7 +266,9 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_donation_developer:
-                Intent it2 = new Intent(Intent.ACTION_VIEW, Uri.parse("alipays://platformapi/startapp?saId=10000007&qrcode=https%3A%2F%2Fqr.alipay.com%2Ftsx00339eflkuhhtfctcn48"));
+                Intent it2 = new Intent(Intent.ACTION_VIEW, Uri.parse("alipays://platformapi" +
+                        "/startapp?saId=10000007&qrcode=https%3A%2F%2Fqr.alipay" +
+                        ".com%2Ftsx00339eflkuhhtfctcn48"));
                 startActivity(it2);
                 break;
 
@@ -271,11 +281,13 @@ public class SettingsActivity extends Activity {
                 break;
 
             case R.id.btn_minExchangeCount:
-                EditDialog.showEditDialog(this, btn.getText(), EditDialog.EditMode.MIN_EXCHANGE_COUNT);
+                EditDialog.showEditDialog(this, btn.getText(),
+                        EditDialog.EditMode.MIN_EXCHANGE_COUNT);
                 break;
 
             case R.id.btn_latestExchangeTime:
-                EditDialog.showEditDialog(this, btn.getText(), EditDialog.EditMode.LATEST_EXCHANGE_TIME);
+                EditDialog.showEditDialog(this, btn.getText(),
+                        EditDialog.EditMode.LATEST_EXCHANGE_TIME);
                 break;
 
             case R.id.cb_kbSignIn:
@@ -289,7 +301,7 @@ public class SettingsActivity extends Activity {
         super.onPause();
         if (Config.hasChanged) {
             Config.hasChanged = !Config.saveConfigFile();
-            Toast.makeText(this, "Configuration saved", 0).show();
+            Toast.makeText(this, "Configuration saved", Toast.LENGTH_SHORT).show();
         }
         FriendIdMap.saveIdMap();
         CooperationIdMap.saveIdMap();

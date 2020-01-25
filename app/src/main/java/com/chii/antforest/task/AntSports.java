@@ -1,13 +1,13 @@
 package com.chii.antforest.task;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import com.chii.antforest.hook.AntSportsRpcCall;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.FriendIdMap;
 import com.chii.antforest.util.Log;
 import com.chii.antforest.util.Statistics;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class AntSports {
     private static final String TAG = AntSports.class.getCanonicalName();
@@ -47,10 +47,11 @@ public class AntSports {
         try {
             String s = AntSportsRpcCall.rpcCall_queryMyHomePage(loader);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 s = jo.getString("pathJoinStatus");
-                if (s.equals("GOING")) {
-                    FriendIdMap.currentUid = jo.getJSONObject("myPositionModel").getString("userId");
+                if ("GOING".equals(s)) {
+                    FriendIdMap.currentUid = jo.getJSONObject("myPositionModel").getString(
+                            "userId");
                     String rankCacheKey = jo.getString("rankCacheKey");
                     JSONArray ja = jo.getJSONArray("treasureBoxModelList");
                     for (int i = 0; i < ja.length(); i++) {
@@ -67,7 +68,7 @@ public class AntSports {
                     if (canMoveStepCount >= minGoStepCount) {
                         go(loader, day, rankCacheKey, canMoveStepCount, title);
                     }
-                } else if (s.equals("NOT_JOIN")) {
+                } else if ("NOT_JOIN".equals(s)) {
                     JSONArray ja = jo.getJSONArray("allPathBaseInfoList");
                     for (int i = ja.length() - 1; i >= 0; i--) {
                         jo = ja.getJSONObject(i);
@@ -92,7 +93,7 @@ public class AntSports {
         try {
             String s = AntSportsRpcCall.rpcCall_join(loader, pathId);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 Log.other("成功加入〈" + title + "〉路线");
                 queryMyHomePage(loader);
             } else {
@@ -104,13 +105,14 @@ public class AntSports {
         }
     }
 
-    private static void go(ClassLoader loader, String day, String rankCacheKey, int stepCount, String title) {
+    private static void go(ClassLoader loader, String day, String rankCacheKey, int stepCount,
+                           String title) {
         try {
             String s = AntSportsRpcCall.rpcCall_go(loader, day, rankCacheKey, stepCount);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 Log.other("〈" + title + "〉路线前进了〈" + jo.getInt("goStepCount") + "步〉");
-                boolean completed = jo.getString("completeStatus").equals("COMPLETED");
+                boolean completed = "COMPLETED".equals(jo.getString("completeStatus"));
                 JSONArray ja = jo.getJSONArray("allTreasureBoxModelList");
                 for (int i = 0; i < ja.length(); i++) {
                     parseTreasureBoxModel(loader, ja.getJSONObject(i), rankCacheKey);
@@ -128,7 +130,8 @@ public class AntSports {
         }
     }
 
-    private static void parseTreasureBoxModel(ClassLoader loader, JSONObject jo, String rankCacheKey) {
+    private static void parseTreasureBoxModel(ClassLoader loader, JSONObject jo,
+                                              String rankCacheKey) {
         try {
             String canOpenTime = jo.getString("canOpenTime");
             String issueTime = jo.getString("issueTime");
@@ -189,7 +192,7 @@ public class AntSports {
         try {
             String s = AntSportsRpcCall.rpcCall_openTreasureBox(loader, boxNo, userId);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 JSONArray ja = jo.getJSONArray("treasureBoxAwards");
                 int num = 0;
                 for (int i = 0; i < ja.length(); i++) {
@@ -213,7 +216,7 @@ public class AntSports {
         try {
             String s = AntSportsRpcCall.rpcCall_queryProjectList(loader, 0);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 int charityCoinCount = jo.getInt("charityCoinCount");
                 if (charityCoinCount < 10) {
                     return false;
@@ -223,8 +226,9 @@ public class AntSports {
                 JSONArray ja = jo.getJSONArray("data");
                 for (int i = 0; i < ja.length(); i++) {
                     jo = ja.getJSONObject(i).getJSONObject("basicModel");
-                    if (jo.getString("footballFieldStatus").equals("OPENING_DONATE")) {
-                        donate(loader, charityCoinCount / 10 * 10, jo.getString("projectId"), jo.getString("title"));
+                    if ("OPENING_DONATE".equals(jo.getString("footballFieldStatus"))) {
+                        donate(loader, charityCoinCount / 10 * 10, jo.getString("projectId"),
+                                jo.getString("title"));
                         break;
                     }
                 }
@@ -238,11 +242,12 @@ public class AntSports {
         return haveMore;
     }
 
-    private static void donate(ClassLoader loader, int donateCharityCoin, String projectId, String title) {
+    private static void donate(ClassLoader loader, int donateCharityCoin, String projectId,
+                               String title) {
         try {
             String s = AntSportsRpcCall.rpcCall_donate(loader, donateCharityCoin, projectId);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 Log.other("捐赠〈" + title + "〉〈" + donateCharityCoin + "运动币〉");
             } else {
                 Log.i(TAG, jo.getString("resultDesc"));
@@ -257,7 +262,7 @@ public class AntSports {
         try {
             String s = AntSportsRpcCall.rpcCall_queryWalkStep(loader);
             JSONObject jo = new JSONObject(s);
-            if (jo.getString("resultCode").equals("SUCCESS")) {
+            if ("SUCCESS".equals(jo.getString("resultCode"))) {
                 jo = jo.getJSONObject("dailyStepModel");
                 int produceQuantity = jo.getInt("produceQuantity");
                 int hour = Integer.parseInt(Log.getFormatTime().split(":")[0]);
@@ -265,7 +270,8 @@ public class AntSports {
                     s = AntSportsRpcCall.rpcCall_exchange(loader, produceQuantity, 3);
                     jo = new JSONObject(s);
                     if (jo.getBoolean("isSuccess")) {
-                        s = AntSportsRpcCall.rpcCall_exchange_success(loader, jo.getString("exchangeId"));
+                        s = AntSportsRpcCall.rpcCall_exchange_success(loader, jo.getString(
+                                "exchangeId"));
                         jo = new JSONObject(s);
                         if (jo.getBoolean("isSuccess")) {
                             int userCount = jo.getInt("userCount");

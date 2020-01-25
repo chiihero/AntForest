@@ -52,7 +52,8 @@ public class ChoiceDialog {
         if (recallAnimalTypeDialog == null) {
             recallAnimalTypeDialog = new AlertDialog.Builder(c)
                     .setTitle(title)
-                    .setSingleChoiceItems(RecallAnimalType.names, Config.recallAnimalType().ordinal(),
+                    .setSingleChoiceItems(RecallAnimalType.names,
+                            Config.recallAnimalType().ordinal(),
                             new OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface p1, int p2) {

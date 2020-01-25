@@ -12,6 +12,7 @@ import java.util.List;
 
 public class AppUtils {
     public static final String PACKAGE_NAME_XPOSED = "de.robv.android.xposed.installer";
+
     public static String getAppVersionName(Context context, String packageName) {
         PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> packageInfos = packageManager.getInstalledPackages(0);
@@ -22,9 +23,11 @@ public class AppUtils {
         }
         return "";
     }
+
     public static boolean isModuleActive() {
         return false;
     }
+
     public static boolean isExpModuleActive(Context context) {
         boolean isExp = false;
         if (context == null) {

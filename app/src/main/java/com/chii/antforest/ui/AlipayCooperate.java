@@ -1,11 +1,11 @@
 package com.chii.antforest.ui;
 
+import com.chii.antforest.util.CooperationIdMap;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import com.chii.antforest.util.CooperationIdMap;
 
 public class AlipayCooperate extends AlipayId {
     private static List<AlipayCooperate> list;
@@ -21,7 +21,8 @@ public class AlipayCooperate extends AlipayId {
             Set idSet = CooperationIdMap.getIdMap().entrySet();
             for (Object o : idSet) {
                 Map.Entry entry = (Map.Entry) o;
-                list.add(new AlipayCooperate(entry.getKey().toString(), entry.getValue().toString()));
+                list.add(new AlipayCooperate(entry.getKey().toString(),
+                        entry.getValue().toString()));
             }
         }
         return list;

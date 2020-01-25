@@ -1,11 +1,11 @@
 package com.chii.antforest;
 
-import org.json.JSONObject;
-
 import com.chii.antforest.hook.KBMemberRpcCall;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.Log;
 import com.chii.antforest.util.Statistics;
+
+import org.json.JSONObject;
 
 public class KBMember {
     private static final String TAG = KBMember.class.getCanonicalName();
@@ -40,7 +40,8 @@ public class KBMember {
             JSONObject jo = new JSONObject(s);
             if (jo.getBoolean("success")) {
                 jo = jo.getJSONObject("data");
-                Log.other("口碑签到〈第" + jo.getString("dayNo") + "天〉，获得〈" + jo.getString("value") + "积分〉");
+                Log.other("口碑签到〈第" + jo.getString("dayNo") + "天〉，获得〈" + jo.getString("value") +
+                        "积分〉");
                 Statistics.KbSignInToday();
             } else if (s.contains("\"HAS_SIGN_IN\"")) {
                 Statistics.KbSignInToday();

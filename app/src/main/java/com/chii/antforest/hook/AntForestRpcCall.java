@@ -24,7 +24,8 @@ public class AntForestRpcCall {
         try {
             String args1 = "[{\"canRobFlags\":\"F,F,F\",\"source\":\"_NO_SOURCE_\",\"userId\":\""
                     + userId + "\",\"version\":\"20181220\"}]";
-            String res = RpcCall.invoke(loader, "alipay.antmember.forest.h5.queryNextAction", args1);
+            String res = RpcCall.invoke(loader, "alipay.antmember.forest.h5.queryNextAction",
+                    args1);
 
             return res;
         } catch (Throwable t) {
@@ -45,7 +46,8 @@ public class AntForestRpcCall {
         return null;
     }
 
-    public static String rpcCallTransferEnergy(ClassLoader loader, String targetUser, String bizNo, int ordinal) {
+    public static String rpcCallTransferEnergy(ClassLoader loader, String targetUser,
+                                               String bizNo, int ordinal) {
         try {
             String args1 = "[{\"bizNo\":\"" + bizNo + ordinal + "\",\"targetUser\":\""
                     + targetUser + "\",\"transferType\":\"WATERING\",\"version\":\"20181217\"}]";//
@@ -57,10 +59,14 @@ public class AntForestRpcCall {
         return null;
     }
 
-    public static String rpcCallForFriendCollectEnergy(ClassLoader loader, String targetUserId, long bubbleId) {
+    public static String rpcCallForFriendCollectEnergy(ClassLoader loader, String targetUserId,
+                                                       long bubbleId) {
         try {
-            String args1 = "[{\"bubbleIds\":[" + bubbleId + "],\"targetUserId\":\"" + targetUserId + "\"}]";
-            return RpcCall.invoke(loader, "alipay.antmember.forest.h5.forFriendCollectEnergy", args1);
+            String args1 =
+                    "[{\"bubbleIds\":[" + bubbleId + "],\"targetUserId\":\"" + targetUserId +
+                            "\"}]";
+            return RpcCall.invoke(loader, "alipay.antmember.forest.h5.forFriendCollectEnergy",
+                    args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCallForFriendCollectEnergy err:");
             Log.printStackTrace(TAG, t);
@@ -82,7 +88,9 @@ public class AntForestRpcCall {
     public static String rpcCallReceiveTaskAward(ClassLoader loader, String taskType) {
         try {
             String args1 =
-                    "[{\"ignoreLimit\":false,\"requestType\":\"H5\",\"sceneCode\":\"ANTFOREST_TASK\",\"source\":\"ANTFOREST\",\"taskType\":\""
+                    "[{\"ignoreLimit\":false,\"requestType\":\"H5\"," +
+                            "\"sceneCode\":\"ANTFOREST_TASK\",\"source\":\"ANTFOREST\"," +
+                            "\"taskType\":\""
                             + taskType + "\"}]";
             return RpcCall.invoke(loader, "com.alipay.antiep.receiveTaskAward", args1);
         } catch (Throwable t) {

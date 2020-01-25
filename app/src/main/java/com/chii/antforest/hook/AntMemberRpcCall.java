@@ -11,7 +11,8 @@ public class AntMemberRpcCall {
     public static String rpcCall_queryPointCert(ClassLoader loader, int page, int pageSize) {
         try {
             String args1 = "[{\"page\":" + page + ",\"pageSize\":" + pageSize + "}]";
-            return RpcCall.invoke(loader, "alipay.antmember.biz.rpc.member.h5.queryPointCert", args1);
+            return RpcCall.invoke(loader, "alipay.antmember.biz.rpc.member.h5.queryPointCert",
+                    args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCall_queryPointCert err:");
             Log.printStackTrace(TAG, t);
@@ -22,7 +23,8 @@ public class AntMemberRpcCall {
     public static String rpcCall_receivePointByUser(ClassLoader loader, String certId) {
         try {
             String args1 = "[{\"certId\":" + certId + "}]";
-            return RpcCall.invoke(loader, "alipay.antmember.biz.rpc.member.h5.receivePointByUser", args1);
+            return RpcCall.invoke(loader, "alipay.antmember.biz.rpc.member.h5.receivePointByUser"
+                    , args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCall_receivePointByUser err:");
             Log.printStackTrace(TAG, t);
@@ -81,7 +83,8 @@ public class AntMemberRpcCall {
         try {
             String args1 = "[{\"familyId\":\"" + familyId +
                     "\",\"limit\":20,\"needQueryOtherMemberCert\":false}]";
-            return RpcCall.invoke(loader, "com.alipay.alipaymember.biz.rpc.family.h5.queryFamilyPointCert", args1);
+            return RpcCall.invoke(loader, "com.alipay.alipaymember.biz.rpc.family.h5" +
+                    ".queryFamilyPointCert", args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCall_queryFamilyPointCert err:");
             Log.printStackTrace(TAG, t);
@@ -89,11 +92,13 @@ public class AntMemberRpcCall {
         return null;
     }
 
-    public static String rpcCall_claimFamilyPointCert(ClassLoader loader, long certId, String familyId) {
+    public static String rpcCall_claimFamilyPointCert(ClassLoader loader, long certId,
+                                                      String familyId) {
         try {
             String args1 = "[{\"certId\":" + certId + ",\"familyId\":\""
                     + familyId + "\"}]";
-            return RpcCall.invoke(loader, "com.alipay.alipaymember.biz.rpc.family.h5.claimFamilyPointCert", args1);
+            return RpcCall.invoke(loader, "com.alipay.alipaymember.biz.rpc.family.h5" +
+                    ".claimFamilyPointCert", args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCall_claimFamilyPointCert err:");
             Log.printStackTrace(TAG, t);
