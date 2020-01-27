@@ -1,8 +1,8 @@
 package com.chii.antforest;
 
 import com.chii.antforest.hook.HookerDispatcher;
-import com.chii.antforest.pojo.ClassMember;
-import com.chii.antforest.ui.activity.MainActivity;
+import com.chii.antforest.pojo.HookClass;
+import com.chii.antforest.view.activity.MainActivity;
 import com.chii.antforest.util.Log;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
@@ -17,7 +17,7 @@ public class Main implements IXposedHookLoadPackage {
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         XposedBridge.log("HookLogic >> current package chiilog:" + lpparam.packageName);
-        if (ClassMember.COM_CHII_ANTFOREST.equals(lpparam.packageName)) {
+        if (HookClass.COM_CHII_ANTFOREST.equals(lpparam.packageName)) {
             Log.i(TAG, "chiilog" + lpparam.packageName);
             XposedHelpers.findAndHookMethod(MainActivity.class.getName(), lpparam.classLoader,
                     "setModuleActive", boolean.class, new XC_MethodHook() {
@@ -28,7 +28,7 @@ public class Main implements IXposedHookLoadPackage {
             });
         }
 
-        if (ClassMember.COM_EG_ANDROID_ALIPAYGPHONE.equals(lpparam.packageName)) {
+        if (HookClass.COM_EG_ANDROID_ALIPAYGPHONE.equals(lpparam.packageName)) {
             Log.i(TAG, "chiilog" + lpparam.packageName);
             HookerDispatcher hookerDispatcher = new HookerDispatcher();
             hookerDispatcher.hookLauncherService(lpparam.classLoader);

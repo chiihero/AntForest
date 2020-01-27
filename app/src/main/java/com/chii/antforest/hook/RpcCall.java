@@ -2,7 +2,7 @@ package com.chii.antforest.hook;
 
 import android.content.Intent;
 
-import com.chii.antforest.pojo.ClassMember;
+import com.chii.antforest.pojo.HookClass;
 import com.chii.antforest.task.AntForestToast;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.Log;
@@ -21,12 +21,12 @@ public class RpcCall {
         if (rpcCallMethod == null) {
             try {
                 Class<?> rpcClazz =
-                        loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_NEBULABIZ_RPC_H5RPCUTIL);
+                        loader.loadClass(HookClass.COM_ALIPAY_MOBILE_NEBULABIZ_RPC_H5RPCUTIL);
                 Class<?> h5PageClazz =
-                        loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
-                Class<?> jsonClazz = loader.loadClass(ClassMember.COM_ALIBABA_FASTJSON_JSONOBJECT);
+                        loader.loadClass(HookClass.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
+                Class<?> jsonClazz = loader.loadClass(HookClass.COM_ALIBABA_FASTJSON_JSONOBJECT);
                 rpcCallMethod = rpcClazz.getMethod(
-                        ClassMember.rpcCall, String.class, String.class, String.class,
+                        HookClass.rpcCall, String.class, String.class, String.class,
                         boolean.class, jsonClazz, String.class, boolean.class, h5PageClazz,
                         int.class, String.class, boolean.class, int.class);
                 Log.i(TAG, "get Old RpcCallMethod successfully");
@@ -38,13 +38,13 @@ public class RpcCall {
             if (rpcCallMethod == null) {
                 try {
                     Class<?> h5PageClazz =
-                            loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
+                            loader.loadClass(HookClass.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
                     Class<?> jsonClazz =
-                            loader.loadClass(ClassMember.COM_ALIBABA_FASTJSON_JSONOBJECT);
+                            loader.loadClass(HookClass.COM_ALIBABA_FASTJSON_JSONOBJECT);
                     Class<?> rpcClazz =
-                            loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_NEBULAAPPPROXY_API_RPC_H5RPCUTIL);
+                            loader.loadClass(HookClass.COM_ALIPAY_MOBILE_NEBULAAPPPROXY_API_RPC_H5RPCUTIL);
                     rpcCallMethod = rpcClazz.getMethod(
-                            ClassMember.rpcCall, String.class, String.class, String.class,
+                            HookClass.rpcCall, String.class, String.class, String.class,
                             boolean.class, jsonClazz, String.class, boolean.class, h5PageClazz,
                             int.class, String.class, boolean.class, int.class, String.class);
                     Log.i(TAG, "get RpcCallMethod successfully");
@@ -90,7 +90,7 @@ public class RpcCall {
     private static String getResponse(Object resp) {
         try {
             if (getResponseMethod == null) {
-                getResponseMethod = resp.getClass().getMethod(ClassMember.getResponse);
+                getResponseMethod = resp.getClass().getMethod(HookClass.getResponse);
             }
 
             return (String) getResponseMethod.invoke(resp);

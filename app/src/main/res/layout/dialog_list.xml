@@ -5,11 +5,11 @@
     android:orientation="vertical">
 
     <ListView
+        android:id="@+id/lv_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fastScrollEnabled="true"
-        android:id="@+id/lv_list"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:fastScrollEnabled="true" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -22,16 +22,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:id="@+id/edt_find"
-            android:hint="try to search  XX(112" />
+            android:hint="搜索用户" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/buttonBarButtonStyle"
-            android:text="Last"
-            android:textAllCaps="false"
+            android:text="上一个"
+
             android:minHeight="50dp"
-            android:background="@drawable/button"
             android:id="@+id/btn_find_last"
             android:padding="12dp" />
 
@@ -39,10 +38,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/buttonBarButtonStyle"
-            android:text="Next"
-            android:textAllCaps="false"
+            android:text="下一个"
+
             android:minHeight="50dp"
-            android:background="@drawable/button"
+
             android:id="@+id/btn_find_next"
             android:padding="12dp" />
 

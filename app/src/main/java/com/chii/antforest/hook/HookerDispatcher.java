@@ -9,7 +9,7 @@ import android.os.Handler;
 import android.os.PowerManager;
 
 import com.chii.antforest.KBMember;
-import com.chii.antforest.pojo.ClassMember;
+import com.chii.antforest.pojo.HookClass;
 import com.chii.antforest.task.AntCooperate;
 import com.chii.antforest.task.AntFarm;
 import com.chii.antforest.task.AntForest;
@@ -39,8 +39,8 @@ public class HookerDispatcher {
     public void hookLauncherService(ClassLoader loader) {
         try {
             XposedHelpers.findAndHookMethod(
-                    ClassMember.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE, loader,
-                    ClassMember.onCreate, new XC_MethodHook() {
+                    HookClass.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE, loader,
+                    HookClass.onCreate, new XC_MethodHook() {
                         ClassLoader loader;
 
                         public XC_MethodHook setData(ClassLoader cl) {
@@ -113,13 +113,13 @@ public class HookerDispatcher {
                             }
                         }
                     }.setData(loader));
-            Log.i(TAG, "hook " + ClassMember.onCreate + " successfully");
+            Log.i(TAG, "hook " + HookClass.onCreate + " successfully");
         } catch (Throwable t) {
-            Log.i(TAG, "hook " + ClassMember.onCreate + " err:");
+            Log.i(TAG, "hook " + HookClass.onCreate + " err:");
             Log.printStackTrace(TAG, t);
         }
         try {
-            XposedHelpers.findAndHookMethod(ClassMember.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE, loader, ClassMember.onDestroy, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod(HookClass.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE, loader, HookClass.onDestroy, new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (wakeLock != null) {
@@ -135,8 +135,8 @@ public class HookerDispatcher {
                         AlarmManager alarmManager =
                                 (AlarmManager) service.getSystemService(Context.ALARM_SERVICE);
                         Intent it = new Intent();
-                        it.setClassName(ClassMember.COM_EG_ANDROID_ALIPAYGPHONE,
-                                ClassMember.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE);
+                        it.setClassName(HookClass.COM_EG_ANDROID_ALIPAYGPHONE,
+                                HookClass.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE);
                         PendingIntent pi = PendingIntent.getService(service, 0, it,
                                 PendingIntent.FLAG_UPDATE_CURRENT);
                         alarmManager.set(AlarmManager.RTC_WAKEUP,
@@ -144,9 +144,9 @@ public class HookerDispatcher {
                     }
                 }
             });
-            Log.i(TAG, "hook " + ClassMember.onDestroy + " successfully");
+            Log.i(TAG, "hook " + HookClass.onDestroy + " successfully");
         } catch (Throwable t) {
-            Log.i(TAG, "hook " + ClassMember.onDestroy + " err:");
+            Log.i(TAG, "hook " + HookClass.onDestroy + " err:");
             Log.printStackTrace(TAG, t);
         }
     }
@@ -154,15 +154,15 @@ public class HookerDispatcher {
     public void hookRpcCall(ClassLoader loader) {
         try {
             Class<?> clazz =
-                    loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_NEBULAAPPPROXY_API_RPC_H5APPRPCUPDATE);
+                    loader.loadClass(HookClass.COM_ALIPAY_MOBILE_NEBULAAPPPROXY_API_RPC_H5APPRPCUPDATE);
             Class<?> H5PageClazz =
-                    loader.loadClass(ClassMember.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
+                    loader.loadClass(HookClass.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
             XposedHelpers.findAndHookMethod(
-                    clazz, ClassMember.matchVersion, H5PageClazz, Map.class, String.class,
+                    clazz, HookClass.matchVersion, H5PageClazz, Map.class, String.class,
                     XC_MethodReplacement.returnConstant(false));
-            Log.i(TAG, "hook " + ClassMember.matchVersion + " successfully");
+            Log.i(TAG, "hook " + HookClass.matchVersion + " successfully");
         } catch (Throwable t) {
-            Log.i(TAG, "hook " + ClassMember.matchVersion + " err:");
+            Log.i(TAG, "hook " + HookClass.matchVersion + " err:");
             Log.printStackTrace(TAG, t);
         }
     }

@@ -1,4 +1,4 @@
-package com.chii.antforest.ui.adapter;
+package com.chii.antforest.view.adapter;
 
 import android.util.SparseArray;
 import android.view.View;

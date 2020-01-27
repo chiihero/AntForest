@@ -1,4 +1,4 @@
-package com.chii.antforest.ui.adapter;
+package com.chii.antforest.view.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,11 +10,11 @@ import android.widget.TextView;
 import com.chii.antforest.R;
 import java.util.List;
 
-public class LogListViewAdapter extends BaseAdapter {
+public class ListLogViewAdapter extends BaseAdapter {
     private Context mContext;
     private List<String> logList;
 
-    public LogListViewAdapter(Context mContext, List<String> logList) {
+    public ListLogViewAdapter(Context mContext, List<String> logList) {
         this.mContext = mContext;
         this.logList = logList;
     }

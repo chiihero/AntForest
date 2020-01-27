@@ -1,6 +1,6 @@
 package com.chii.antforest.pojo;
 
-public class ClassMember {
+public class HookClass {
     public static final String
             COM_CHII_ANTFOREST = "com.chii.antforest",
             COM_EG_ANDROID_ALIPAYGPHONE = "com.eg.android.AlipayGphone",

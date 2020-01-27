@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+//apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion 28
+//    greendao{
+//        schemaVersion 1
+//        daoPackage 'com.chii.antforest.dao'
+//        targetGenDir 'src/main/java'
+//    }
     defaultConfig {
         applicationId "com.chii.antforest"
         minSdkVersion 22
@@ -27,6 +35,10 @@ dependencies {
     compileOnly 'de.robv.android.xposed:api:82:sources'
 
     //butterknife
-//    implementation 'com.jakewharton:butterknife:10.1.0'
-//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation 'com.jakewharton:butterknife:10.2.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
+
+    //数据库
+//    implementation 'org.greenrobot:greendao:3.2.2'
+//    implementation 'org.apache.commons:commons-lang3:3.7'
 }

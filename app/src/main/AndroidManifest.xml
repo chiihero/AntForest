@@ -21,7 +21,7 @@
             android:value="54" />
 
         <activity
-            android:name=".ui.activity.MainActivity"
+            android:name=".view.activity.MainActivity"
             android:resizeableActivity="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,9 +32,9 @@
         </activity>
 
         <activity-alias
-            android:name=".ui.MainActivityAlias"
+            android:name=".view.activity.MainActivityAlias"
             android:enabled="true"
-            android:targetActivity=".ui.activity.MainActivity">
+            android:targetActivity=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,10 +43,10 @@
         </activity-alias>
 
         <activity
-            android:name=".ui.activity.SettingsActivity"
+            android:name=".view.activity.SettingsActivity"
             android:resizeableActivity="true" />
         <activity
-            android:name=".ui.activity.LogActivity"
+            android:name=".view.activity.LogActivity"
             android:resizeableActivity="true" />
 <!--        <activity-->
 <!--            android:name=".ui.activity.HtmlViewerActivity"-->

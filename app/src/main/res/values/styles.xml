@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="SettingTitle">
+        <item name="android:gravity">center</item>
+        <item name="android:background">#FF898989</item>
+        <item name="android:textColor">#FFFFFFFF</item>
+    </style>
+    <!--style="?android:attr/buttonBarButtonStyle"-->
+    <style name="SettingButton">
+        <item name="android:gravity">left|center_vertical</item>
+        <item name="android:background">#e0000000</item>
+        <item name="android:minHeight">50dp</item>
+    </style>
+
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light" />
 </resources>

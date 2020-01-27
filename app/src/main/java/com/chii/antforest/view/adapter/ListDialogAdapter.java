@@ -1,4 +1,4 @@
-package com.chii.antforest.ui;
+package com.chii.antforest.view.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,26 +10,27 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.chii.antforest.R;
+import com.chii.antforest.pojo.AlipayId;
 
 import java.util.List;
 
-public class ListAdapter extends BaseAdapter {
-    private static ListAdapter adapter;
+public class ListDialogAdapter extends BaseAdapter {
+    private static ListDialogAdapter adapter;
+    private Context context;
+    private List<?> list;
+    private List<String> selects;
+    private int findIndex = -1;
+    private CharSequence findWord = null;
 
-    public static ListAdapter get(Context c) {
+    public static ListDialogAdapter get(Context c) {
         if (adapter == null) {
-            adapter = new ListAdapter(c);
+            adapter = new ListDialogAdapter(c);
         }
         return adapter;
     }
 
-    Context context;
-    List<?> list;
-    List<String> selects;
-    int findIndex = -1;
-    CharSequence findWord = null;
 
-    private ListAdapter(Context c) {
+    private ListDialogAdapter(Context c) {
         context = c;
     }
 
@@ -133,9 +134,9 @@ public class ListAdapter extends BaseAdapter {
         return p2;
     }
 
-    class ViewHolder {
-        TextView tv;
-        CheckBox cb;
+    public class ViewHolder {
+        public TextView tv;
+        public CheckBox cb;
     }
 
 }

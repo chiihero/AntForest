@@ -1,10 +1,460 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp">
 
-    <include layout="@layout/include_settings" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="基本配置"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Switch
+                android:id="@+id/cb_immediateEffect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="立即生效" />
+
+            <Switch
+                android:id="@+id/cb_recordLog"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="记录日志" />
+
+            <Switch
+                android:id="@+id/cb_showToast"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="显示Toast" />
+
+            <Switch
+                android:id="@+id/cb_stayAwake"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="保持唤醒" />
+
+            <Switch
+                android:id="@+id/cb_autoRestart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="自动重启服务" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="蚂蚁森林配置"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Switch
+                android:id="@+id/cb_collectEnergy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="收集能量" />
+
+            <Button
+                android:id="@+id/btn_checkInterval"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="检查间隔（分钟）" />
+
+            <Button
+                android:id="@+id/btn_threadCount"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="线程数" />
+
+            <Button
+                android:id="@+id/btn_collectInterval"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="收集间隔（毫秒）" />
+
+            <Button
+                android:id="@+id/btn_collectTimeout"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="收集超时（秒）" />
+
+            <Button
+                android:id="@+id/btn_advanceTime"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="提前时间（毫秒）" />
+
+            <Button
+                android:id="@+id/btn_returnWater30"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="返回浇水30" />
+
+
+            <Button
+                android:id="@+id/btn_returnWater20"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="返回浇水20" />
+
+            <Button
+                android:id="@+id/btn_returnWater10"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="返回浇水10" />
+
+            <Switch
+                android:id="@+id/cb_helpFriendCollect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="帮助朋友收集能量" />
+
+            <Button
+                android:id="@+id/btn_dontCollectList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="不收能量的列表" />
+
+            <Button
+                android:id="@+id/btn_dontHelpCollectList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="不帮忙收能量的列表" />
+
+            <Switch
+                android:id="@+id/cb_receiveForestTaskAward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="获得森林任务奖" />
+
+            <Button
+                android:id="@+id/btn_waterFriendList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="帮浇水的好友列表" />
+
+            <Switch
+                android:id="@+id/cb_cooperateWater"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="森林合种" />
+
+            <Button
+                android:id="@+id/btn_cooperateWaterList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="森林合种好友列表" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="蚂蚁庄园配置"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Switch
+                android:id="@+id/cb_enableFarm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="启用蚂蚁庄园" />
+
+            <Switch
+                android:id="@+id/cb_rewardFriend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="打赏好友" />
+
+            <Switch
+                android:id="@+id/cb_sendBackAnimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="赶鸡" />
+
+            <Button
+                android:id="@+id/btn_sendType"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="赶鸡方式" />
+
+            <Button
+                android:id="@+id/btn_dontSendFriendList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="不赶鸡的好友列表" />
+
+            <Button
+                android:id="@+id/btn_recallAnimalType"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="召回小鸡方式" />
+
+            <Switch
+                android:id="@+id/cb_receiveFarmToolReward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="领取道具卡奖励" />
+
+            <Switch
+                android:id="@+id/cb_useNewEggTool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="使用新蛋卡" />
+
+            <Switch
+                android:id="@+id/cb_harvestProduce"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="收取爱心鸡蛋" />
+
+            <Switch
+                android:id="@+id/cb_donation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="捐赠爱心鸡蛋" />
+
+            <Switch
+                android:id="@+id/cb_answerQuestion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="答题" />
+
+            <Switch
+                android:id="@+id/cb_receiveFarmTaskAward"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="领取庄园任务奖励" />
+
+            <Switch
+                android:id="@+id/cb_feedAnimal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="喂鸡" />
+
+            <Switch
+                android:id="@+id/cb_useAccelerateTool"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="使用加速卡" />
+
+            <Button
+                android:id="@+id/btn_feedFriendAnimalList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="帮好友喂鸡列表" />
+
+            <Switch
+                android:id="@+id/cb_notifyFriend"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="通知好友赶鸡" />
+
+            <Button
+                android:id="@+id/btn_dontNotifyFriendList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="不通知赶鸡的好友列表" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="其他配置"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Switch
+                android:id="@+id/cb_receivePoint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="领取蚂蚁会员积分" />
+
+            <Switch
+                android:id="@+id/cb_openTreasureBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="开启运动线路宝箱" />
+
+            <Switch
+                android:id="@+id/cb_donateCharityCoin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="捐足球场" />
+
+            <Button
+                android:id="@+id/btn_minExchangeCount"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="最少捐步步数" />
+
+            <Button
+                android:id="@+id/btn_latestExchangeTime"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="最晚捐步时间(24小时)" />
+
+            <Switch
+                android:id="@+id/cb_kbSignIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
+                android:text="口碑签到" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/SettingTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="更多"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <Button
+                android:id="@+id/btn_donation_developer"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="支持开发人员" />
+
+        </LinearLayout>
+    </LinearLayout>
 </ScrollView>
-
 

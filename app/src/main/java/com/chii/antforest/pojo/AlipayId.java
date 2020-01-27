@@ -1,4 +1,4 @@
-package com.chii.antforest.ui;
+package com.chii.antforest.pojo;
 
 public class AlipayId {
     public String name;
