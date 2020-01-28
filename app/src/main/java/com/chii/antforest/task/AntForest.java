@@ -6,6 +6,8 @@ import com.chii.antforest.util.FriendIdMap;
 import com.chii.antforest.util.Log;
 import com.chii.antforest.util.RandomUtils;
 import com.chii.antforest.util.Statistics;
+import com.chii.antforest.view.AntForestNotification;
+import com.chii.antforest.view.AntForestToast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

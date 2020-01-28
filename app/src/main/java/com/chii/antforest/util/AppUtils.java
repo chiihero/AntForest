@@ -31,7 +31,7 @@ public class AppUtils {
     public static boolean isExpModuleActive(Context context) {
         boolean isExp = false;
         if (context == null) {
-            throw new IllegalArgumentException("context must not be null!!");
+            throw new IllegalArgumentException("selfContext must not be null!!");
         }
         try {
             ContentResolver contentResolver = context.getContentResolver();

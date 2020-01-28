@@ -31,8 +31,8 @@ public class FileUtils {
     }
 
     private static File getConfigDirectoryFile() {
-        if (ContextUtil.context != null) {
-            configDirectory = ContextUtil.context.getExternalFilesDir(null);
+        if (ContextUtil.selfContext != null) {
+            configDirectory = ContextUtil.selfContext.getExternalFilesDir(null);
         } else if (configDirectory == null) {
             configDirectory = new File(Environment.getExternalStorageDirectory(), "Android/data" +
                     "/com.chii.antforest/files");

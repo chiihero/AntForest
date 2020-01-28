@@ -40,7 +40,7 @@ public class MainActivity extends Activity {
         ButterKnife.bind(this);
         setModuleActive(false);
         //全局context
-        ContextUtil.context = this.getApplicationContext();
+        ContextUtil.selfContext = this.getApplicationContext();
 
         String[] strHelp = getResources().getStringArray(R.array.sentences);
         btnHelp.setText(strHelp[RandomUtils.nextInt(0, strHelp.length)]);

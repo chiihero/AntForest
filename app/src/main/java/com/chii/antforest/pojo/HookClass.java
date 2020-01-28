@@ -19,12 +19,6 @@ public class HookClass {
                     ".H5Fragment",
             COM_ALIPAY_MOBILE_NEBULACORE_UI_H5ACTIVITY = "com.alipay.mobile.nebulacore.ui" +
                     ".H5Activity",
-            onCreate = "onCreate", onResume = "onResume", onDestroy = "onDestroy", rpcCall =
-            "rpcCall",
-            getResponse = "getResponse",
             matchVersion = "matchVersion",
-            a = "a", h = "h",
-            pushFragment = "pushFragment",
-
-    COM_ALIPAY_MOBILE_NEBULABIZ_RPC_H5RPCUTIL = "com.alipay.mobile.nebulabiz.rpc.H5RpcUtil";
+            COM_ALIPAY_MOBILE_NEBULABIZ_RPC_H5RPCUTIL = "com.alipay.mobile.nebulabiz.rpc.H5RpcUtil";
 }

@@ -1,4 +1,4 @@
-package com.chii.antforest.task;
+package com.chii.antforest.view;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -13,7 +13,7 @@ public class AntForestToast {
 
     public static void show(CharSequence cs) {
         try {
-            Log.i("toast!!!!!!!!!!!!!!!!!!!!!!!!!!!", "context" + (context != null));
+            Log.i("toast!!!!!!!!!!!!!!!!!!!!!!!!!!!", "selfContext" + (context != null));
             if (context != null && Config.showToast()) {
                 HookerDispatcher.handler.post(
                         new Runnable() {
@@ -28,7 +28,7 @@ public class AntForestToast {
                             public void run() {
                                 try {
                                     Log.i("toast2!!!!!!!!!!!!!!!!!!!!!!!!!!!",
-                                            "context" + (context != null));
+                                            "selfContext" + (context != null));
 
                                     Toast.makeText(context, cs, Toast.LENGTH_SHORT).show();
                                 } catch (Throwable t) {

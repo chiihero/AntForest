@@ -8,13 +8,13 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.PowerManager;
 
-import com.chii.antforest.KBMember;
+import com.chii.antforest.task.KBMember;
 import com.chii.antforest.pojo.HookClass;
 import com.chii.antforest.task.AntCooperate;
 import com.chii.antforest.task.AntFarm;
 import com.chii.antforest.task.AntForest;
-import com.chii.antforest.task.AntForestNotification;
-import com.chii.antforest.task.AntForestToast;
+import com.chii.antforest.view.AntForestNotification;
+import com.chii.antforest.view.AntForestToast;
 import com.chii.antforest.task.AntMember;
 import com.chii.antforest.task.AntSports;
 import com.chii.antforest.util.Config;
@@ -40,7 +40,7 @@ public class HookerDispatcher {
         try {
             XposedHelpers.findAndHookMethod(
                     HookClass.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE, loader,
-                    HookClass.onCreate, new XC_MethodHook() {
+                    "onCreate", new XC_MethodHook() {
                         ClassLoader loader;
 
                         public XC_MethodHook setData(ClassLoader cl) {
@@ -113,13 +113,13 @@ public class HookerDispatcher {
                             }
                         }
                     }.setData(loader));
-            Log.i(TAG, "hook " + HookClass.onCreate + " successfully");
+            Log.i(TAG, "hook onCreate successfully");
         } catch (Throwable t) {
-            Log.i(TAG, "hook " + HookClass.onCreate + " err:");
+            Log.i(TAG, "hook onCreate err:");
             Log.printStackTrace(TAG, t);
         }
         try {
-            XposedHelpers.findAndHookMethod(HookClass.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE, loader, HookClass.onDestroy, new XC_MethodHook() {
+            XposedHelpers.findAndHookMethod(HookClass.COM_ALIPAY_ANDROID_LAUNCHER_SERVICE_LAUNCHERSERVICE, loader, "onDestroy", new XC_MethodHook() {
                 @Override
                 protected void afterHookedMethod(MethodHookParam param) throws Throwable {
                     if (wakeLock != null) {
@@ -144,9 +144,9 @@ public class HookerDispatcher {
                     }
                 }
             });
-            Log.i(TAG, "hook " + HookClass.onDestroy + " successfully");
+            Log.i(TAG, "hook onDestroy successfully");
         } catch (Throwable t) {
-            Log.i(TAG, "hook " + HookClass.onDestroy + " err:");
+            Log.i(TAG, "hook onDestroy err:");
             Log.printStackTrace(TAG, t);
         }
     }

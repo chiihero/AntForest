@@ -3,9 +3,9 @@ package com.chii.antforest.hook;
 import android.content.Intent;
 
 import com.chii.antforest.pojo.HookClass;
-import com.chii.antforest.task.AntForestToast;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.Log;
+import com.chii.antforest.view.AntForestToast;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -26,7 +26,7 @@ public class RpcCall {
                         loader.loadClass(HookClass.COM_ALIPAY_MOBILE_H5CONTAINER_API_H5PAGE);
                 Class<?> jsonClazz = loader.loadClass(HookClass.COM_ALIBABA_FASTJSON_JSONOBJECT);
                 rpcCallMethod = rpcClazz.getMethod(
-                        HookClass.rpcCall, String.class, String.class, String.class,
+                        "rpcCall", String.class, String.class, String.class,
                         boolean.class, jsonClazz, String.class, boolean.class, h5PageClazz,
                         int.class, String.class, boolean.class, int.class);
                 Log.i(TAG, "get Old RpcCallMethod successfully");
@@ -44,7 +44,7 @@ public class RpcCall {
                     Class<?> rpcClazz =
                             loader.loadClass(HookClass.COM_ALIPAY_MOBILE_NEBULAAPPPROXY_API_RPC_H5RPCUTIL);
                     rpcCallMethod = rpcClazz.getMethod(
-                            HookClass.rpcCall, String.class, String.class, String.class,
+                            "rpcCall", String.class, String.class, String.class,
                             boolean.class, jsonClazz, String.class, boolean.class, h5PageClazz,
                             int.class, String.class, boolean.class, int.class, String.class);
                     Log.i(TAG, "get RpcCallMethod successfully");
@@ -70,19 +70,21 @@ public class RpcCall {
             Log.i(TAG, "argument: " + args0 + ", " + args1);
             Log.i(TAG, "response: " + str);
             return str;
-        } catch (Throwable t) {
+        } catch (InvocationTargetException t) {
             Log.i(TAG, "invoke err:");
             Log.printStackTrace(TAG, t);
-            if (t instanceof InvocationTargetException) {
-                if (AntForestToast.context != null && sendXEdgeProBroadcast) {
-                    sendXEdgeProBroadcast = false;
-                    Intent it = new Intent("com.jozein.xedgepro.PERFORM");
-                    it.putExtra("data", Config.xedgeproData());
-                    AntForestToast.context.sendBroadcast(it);
-                    Log.recordLog(t.getCause().getMessage() + ",发送XposedEdgePro广播", "");
+            if (AntForestToast.context != null && sendXEdgeProBroadcast) {
+                sendXEdgeProBroadcast = false;
+                Intent it = new Intent("com.jozein.xedgepro.PERFORM");
+                it.putExtra("data", Config.xedgeproData());
+                AntForestToast.context.sendBroadcast(it);
+                Log.recordLog(t.getCause().getMessage() + ",发送XposedEdgePro广播:" + Config.xedgeproData(), "");
 
-                }
             }
+
+        } catch (IllegalAccessException e) {
+            Log.i(TAG, "invoke err:");
+            Log.printStackTrace(TAG, e);
         }
         return null;
     }
@@ -90,7 +92,7 @@ public class RpcCall {
     private static String getResponse(Object resp) {
         try {
             if (getResponseMethod == null) {
-                getResponseMethod = resp.getClass().getMethod(HookClass.getResponse);
+                getResponseMethod = resp.getClass().getMethod("getResponse");
             }
 
             return (String) getResponseMethod.invoke(resp);
