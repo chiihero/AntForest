@@ -53,7 +53,7 @@ public class AntForest {
                         jo = jaFriendRanking.getJSONObject(i);
                         boolean optBoolean = jo.getBoolean("canCollectEnergy")
                                 || jo.getBoolean("canHelpCollect") || jo.getLong(
-                                        "canCollectLaterTime") > 0;
+                                "canCollectLaterTime") > 0;
                         String userId = jo.getString("userId");
                         if (optBoolean && !userId.equals(selfId)) {
                             canCollectEnergy(loader, userId, true);

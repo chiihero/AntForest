@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.chii.antforest.R;
+
 import java.util.List;
 
 public class ListLogViewAdapter extends BaseAdapter {

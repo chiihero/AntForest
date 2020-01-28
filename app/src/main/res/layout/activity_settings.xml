@@ -220,6 +220,15 @@
                 android:minHeight="50dp"
                 android:text="森林合种好友列表" />
 
+            <Button
+                android:id="@+id/btn_forestFriendList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="森林好友列表" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -367,7 +376,14 @@
                 android:gravity="left|center_vertical"
                 android:minHeight="50dp"
                 android:text="不通知赶鸡的好友列表" />
-
+            <Button
+                android:id="@+id/btn_farmFriendList"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left|center_vertical"
+                android:minHeight="50dp"
+                android:text="庄园好友列表" />
         </LinearLayout>
 
         <LinearLayout

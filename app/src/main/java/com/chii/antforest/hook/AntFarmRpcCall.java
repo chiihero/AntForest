@@ -286,9 +286,10 @@ public class AntFarmRpcCall {
         try {
             String args1 =
                     "[{\"animalType\":\"CHICK\",\"canMock\":true,\"friendFarmId\":\"" + friendFarmId +
-                    "\",\"requestType\":\"NORMAL\",\"sceneCode\":\"ANTFARM\",\"source\":\"H5\"," +
+                            "\",\"requestType\":\"NORMAL\",\"sceneCode\":\"ANTFARM\"," +
+                            "\"source\":\"H5\"," +
                             "\"version\":\""
-                    + version + "\"}]";
+                            + version + "\"}]";
             return RpcCall.invoke(loader, "com.alipay.antfarm.feedFriendAnimal", args1);
         } catch (Throwable t) {
             Log.i(TAG, "rpcCall_feedFriendAnimal err:");

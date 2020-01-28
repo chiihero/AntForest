@@ -2,24 +2,24 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
     android:gravity="center"
-    android:padding="12dp"
-    android:minHeight="50dp">
+    android:minHeight="50dp"
+    android:orientation="horizontal"
+    android:padding="12dp">
 
     <TextView
+        android:id="@+id/tv_idn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Text"
         android:layout_weight="1"
-        android:id="@+id/tv_idn" />
+        android:text="Text" />
 
     <CheckBox
+        android:id="@+id/cb_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
-        android:focusable="false"
-        android:id="@+id/cb_list" />
+        android:focusable="false" />
 
 </LinearLayout>
 
