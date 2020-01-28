@@ -8,18 +8,18 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.PowerManager;
 
-import com.chii.antforest.task.KBMember;
 import com.chii.antforest.pojo.HookClass;
 import com.chii.antforest.task.AntCooperate;
 import com.chii.antforest.task.AntFarm;
 import com.chii.antforest.task.AntForest;
-import com.chii.antforest.view.AntForestNotification;
-import com.chii.antforest.view.AntForestToast;
 import com.chii.antforest.task.AntMember;
 import com.chii.antforest.task.AntSports;
+import com.chii.antforest.task.KBMember;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.Log;
 import com.chii.antforest.util.Statistics;
+import com.chii.antforest.view.AntForestNotification;
+import com.chii.antforest.view.AntForestToast;
 
 import java.util.Map;
 

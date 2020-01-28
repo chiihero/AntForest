@@ -2,8 +2,8 @@ package com.chii.antforest;
 
 import com.chii.antforest.hook.HookerDispatcher;
 import com.chii.antforest.pojo.HookClass;
-import com.chii.antforest.view.activity.MainActivity;
 import com.chii.antforest.util.Log;
+import com.chii.antforest.view.activity.MainActivity;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -21,11 +21,11 @@ public class Main implements IXposedHookLoadPackage {
             Log.i(TAG, "chiilog" + lpparam.packageName);
             XposedHelpers.findAndHookMethod(MainActivity.class.getName(), lpparam.classLoader,
                     "setModuleActive", boolean.class, new XC_MethodHook() {
-                @Override
-                protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
-                    param.args[0] = true;
-                }
-            });
+                        @Override
+                        protected void beforeHookedMethod(XC_MethodHook.MethodHookParam param) throws Throwable {
+                            param.args[0] = true;
+                        }
+                    });
         }
 
         if (HookClass.COM_EG_ANDROID_ALIPAYGPHONE.equals(lpparam.packageName)) {

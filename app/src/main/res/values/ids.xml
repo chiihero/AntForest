@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    我们如何判断我们点击的是哪个item中的TextView和Button呢，因为目前的点击事件
+    只能判断是TextView点击了，还是Button，或者item被点击了，除了item能知道是哪
+    一项被点击了，其他两个却不知道是在哪个item中被点击了，所以我们需要将代码进
+    行在此修改。只需要在MyAdapter中修改代码即可。基本思路是，我们可以在每个被点
+    击的控件中设置一个标记，通过View中的setTag(int key, Object tag)方法设置即可，
+    第一个key必须是一个资源id
+-->
+    <item
+        name="sc1" type="id" >
+    </item>
+    <item
+        name="sc2" type="id">
+    </item>
+    <item
+        name="sc3" type="id">
+    </item>
+</resources>

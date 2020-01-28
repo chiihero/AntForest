@@ -1,6 +1,7 @@
 package com.chii.antforest.view.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,15 +9,15 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.chii.antforest.R;
-import com.chii.antforest.task.AntFarm;
 import com.chii.antforest.pojo.AlipayCooperate;
 import com.chii.antforest.pojo.AlipayUser;
-import com.chii.antforest.view.dialog.ChoiceDialog;
-import com.chii.antforest.view.dialog.EditDialog;
-import com.chii.antforest.view.dialog.ListDialog;
+import com.chii.antforest.task.AntFarm;
 import com.chii.antforest.util.Config;
 import com.chii.antforest.util.CooperationIdMap;
 import com.chii.antforest.util.FriendIdMap;
+import com.chii.antforest.view.dialog.ChoiceDialog;
+import com.chii.antforest.view.dialog.EditDialog;
+import com.chii.antforest.view.dialog.ListDialog;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -130,24 +131,30 @@ public class SettingsActivity extends Activity {
     }
 
     @OnClick({R.id.cb_immediateEffect, R.id.cb_recordLog, R.id.cb_showToast, R.id.cb_stayAwake,
-            R.id.cb_autoRestart, R.id.cb_collectEnergy, R.id.btn_checkInterval,
+            R.id.cb_autoRestart,
+
+            R.id.cb_collectEnergy, R.id.btn_checkInterval,
             R.id.btn_threadCount, R.id.btn_advanceTime, R.id.btn_collectInterval,
             R.id.btn_collectTimeout, R.id.btn_returnWater30, R.id.btn_returnWater20,
             R.id.btn_returnWater10, R.id.cb_helpFriendCollect, R.id.btn_dontCollectList,
-            R.id.btn_dontHelpCollectList, R.id.cb_receiveForestTaskAward,
-            R.id.btn_waterFriendList, R.id.cb_cooperateWater, R.id.btn_cooperateWaterList,
+            R.id.btn_dontHelpCollectList, R.id.cb_receiveForestTaskAward, R.id.btn_waterFriendList,
+            R.id.cb_cooperateWater, R.id.btn_cooperateWaterList, R.id.btn_forestFriendList,
+
             R.id.cb_enableFarm, R.id.cb_rewardFriend, R.id.cb_sendBackAnimal, R.id.btn_sendType,
             R.id.btn_dontSendFriendList, R.id.btn_recallAnimalType, R.id.cb_receiveFarmToolReward,
             R.id.cb_useNewEggTool, R.id.cb_harvestProduce, R.id.cb_donation,
             R.id.cb_answerQuestion, R.id.cb_receiveFarmTaskAward, R.id.cb_feedAnimal,
             R.id.cb_useAccelerateTool, R.id.btn_feedFriendAnimalList, R.id.cb_notifyFriend,
-            R.id.btn_dontNotifyFriendList, R.id.cb_receivePoint, R.id.cb_openTreasureBox,
+            R.id.btn_dontNotifyFriendList, R.id.btn_farmFriendList,
+
+            R.id.cb_receivePoint, R.id.cb_openTreasureBox,
             R.id.cb_donateCharityCoin, R.id.btn_minExchangeCount, R.id.btn_latestExchangeTime,
             R.id.cb_kbSignIn, R.id.btn_donation_developer})
     public void onViewClicked(View view) {
         Switch cb = view instanceof Switch ? (Switch) view : null;
         Button btn = view instanceof Button ? (Button) view : null;
         switch (view.getId()) {
+            //基本配置
             case R.id.cb_immediateEffect:
                 Config.setImmediateEffect(cb.isChecked());
                 break;
@@ -163,32 +170,41 @@ public class SettingsActivity extends Activity {
             case R.id.cb_autoRestart:
                 Config.setAutoRestart(cb.isChecked());
                 break;
+            //蚂蚁森林配置
             case R.id.cb_collectEnergy:
                 Config.setCollectEnergy(cb.isChecked());
                 break;
             case R.id.btn_checkInterval:
-                EditDialog.showEditDialog(this, btn.getText(),Config.checkInterval() / 60_000, EditDialog.EditMode.CHECK_INTERVAL);
+                EditDialog.showEditDialog(this, btn.getText(), Config.checkInterval() / 60_000,
+                        EditDialog.EditMode.CHECK_INTERVAL);
                 break;
             case R.id.btn_threadCount:
-                EditDialog.showEditDialog(this, btn.getText(),Config.threadCount(), EditDialog.EditMode.THREAD_COUNT);
+                EditDialog.showEditDialog(this, btn.getText(), Config.threadCount(),
+                        EditDialog.EditMode.THREAD_COUNT);
                 break;
             case R.id.btn_advanceTime:
-                EditDialog.showEditDialog(this, btn.getText(),Config.advanceTime(), EditDialog.EditMode.ADVANCE_TIME);
+                EditDialog.showEditDialog(this, btn.getText(), Config.advanceTime(),
+                        EditDialog.EditMode.ADVANCE_TIME);
                 break;
             case R.id.btn_collectInterval:
-                EditDialog.showEditDialog(this, btn.getText(),Config.collectInterval(),EditDialog.EditMode.COLLECT_INTERVAL);
+                EditDialog.showEditDialog(this, btn.getText(), Config.collectInterval(),
+                        EditDialog.EditMode.COLLECT_INTERVAL);
                 break;
             case R.id.btn_collectTimeout:
-                EditDialog.showEditDialog(this, btn.getText(),Config.collectTimeout() / 1_000, EditDialog.EditMode.COLLECT_TIMEOUT);
+                EditDialog.showEditDialog(this, btn.getText(), Config.collectTimeout() / 1_000,
+                        EditDialog.EditMode.COLLECT_TIMEOUT);
                 break;
             case R.id.btn_returnWater30:
-                EditDialog.showEditDialog(this, btn.getText(),Config.returnWater30(), EditDialog.EditMode.RETURN_WATER_30);
+                EditDialog.showEditDialog(this, btn.getText(), Config.returnWater30(),
+                        EditDialog.EditMode.RETURN_WATER_30);
                 break;
             case R.id.btn_returnWater20:
-                EditDialog.showEditDialog(this, btn.getText(),Config.returnWater20(), EditDialog.EditMode.RETURN_WATER_20);
+                EditDialog.showEditDialog(this, btn.getText(), Config.returnWater20(),
+                        EditDialog.EditMode.RETURN_WATER_20);
                 break;
             case R.id.btn_returnWater10:
-                EditDialog.showEditDialog(this, btn.getText(),Config.returnWater10(), EditDialog.EditMode.RETURN_WATER_10);
+                EditDialog.showEditDialog(this, btn.getText(), Config.returnWater10(),
+                        EditDialog.EditMode.RETURN_WATER_10);
                 break;
             case R.id.cb_helpFriendCollect:
                 Config.setHelpFriendCollect(cb.isChecked());
@@ -215,6 +231,13 @@ public class SettingsActivity extends Activity {
                 ListDialog.show(this, btn.getText(), AlipayCooperate.getList(),
                         Config.getCooperateWaterList(), Config.getcooperateWaterNumList());
                 break;
+            case R.id.btn_forestFriendList:
+                Intent intent = new Intent();
+                intent.putExtra("type", "forest");
+                intent.setClass(SettingsActivity.this, FriendActivity.class);
+                startActivity(intent);
+                break;
+            //蚂蚁庄园
             case R.id.cb_enableFarm:
                 Config.setEnableFarm(cb.isChecked());
                 break;
@@ -225,14 +248,17 @@ public class SettingsActivity extends Activity {
                 Config.setSendBackAnimal(cb.isChecked());
                 break;
             case R.id.btn_sendType:
-                ChoiceDialog.showChoiceDialog(this, btn.getText(), AntFarm.SendType.names,Config.sendType().ordinal(),ChoiceDialog.ChoiceDialogMode.SEND_TYPE);
+                ChoiceDialog.showChoiceDialog(this, btn.getText(), AntFarm.SendType.names,
+                        Config.sendType().ordinal(), ChoiceDialog.ChoiceDialogMode.SEND_TYPE);
                 break;
             case R.id.btn_dontSendFriendList:
                 ListDialog.show(this, btn.getText(), AlipayUser.getList(),
                         Config.getDontSendFriendList(), null);
                 break;
             case R.id.btn_recallAnimalType:
-                ChoiceDialog.showChoiceDialog(this, btn.getText(), Config.RecallAnimalType.names,Config.recallAnimalType().ordinal(),ChoiceDialog.ChoiceDialogMode.RECALL_ANIMAL_TYPE);
+                ChoiceDialog.showChoiceDialog(this, btn.getText(), Config.RecallAnimalType.names,
+                        Config.recallAnimalType().ordinal(),
+                        ChoiceDialog.ChoiceDialogMode.RECALL_ANIMAL_TYPE);
                 break;
             case R.id.cb_receiveFarmToolReward:
                 Config.setReceiveFarmToolReward(cb.isChecked());
@@ -269,6 +295,12 @@ public class SettingsActivity extends Activity {
                 ListDialog.show(this, btn.getText(), AlipayUser.getList(),
                         Config.getDontNotifyFriendList(), null);
                 break;
+            case R.id.btn_farmFriendList:
+                Intent intent2 = new Intent();
+                intent2.putExtra("type", "farm");
+                intent2.setClass(SettingsActivity.this, FriendActivity.class);
+                startActivity(intent2);
+                break;
             case R.id.cb_receivePoint:
                 Config.setReceivePoint(cb.isChecked());
                 break;
@@ -279,11 +311,11 @@ public class SettingsActivity extends Activity {
                 Config.setDonateCharityCoin(cb.isChecked());
                 break;
             case R.id.btn_minExchangeCount:
-                EditDialog.showEditDialog(this, btn.getText(),Config.minExchangeCount(),
+                EditDialog.showEditDialog(this, btn.getText(), Config.minExchangeCount(),
                         EditDialog.EditMode.MIN_EXCHANGE_COUNT);
                 break;
             case R.id.btn_latestExchangeTime:
-                EditDialog.showEditDialog(this, btn.getText(),Config.latestExchangeTime(),
+                EditDialog.showEditDialog(this, btn.getText(), Config.latestExchangeTime(),
                         EditDialog.EditMode.LATEST_EXCHANGE_TIME);
                 break;
             case R.id.cb_kbSignIn:

@@ -699,7 +699,7 @@ public class AntFarm {
                             if (AnimalInteractStatus.HOME.name().equals(jo.getString(
                                     "animalInteractStatus"))
                                     && AnimalFeedStatus.HUNGRY.name().equals(jo.getString(
-                                            "animalFeedStatus"))) {
+                                    "animalFeedStatus"))) {
                                 feedFriendAnimal(loader, friendFarmId,
                                         FriendIdMap.getNameById(userId));
                             }
@@ -819,7 +819,7 @@ public class AntFarm {
             if (AnimalInteractStatus.STEALING.name().equals(joAnimalStatusVO.getString(
                     "animalInteractStatus"))
                     && AnimalFeedStatus.EATING.name().equals(joAnimalStatusVO.getString(
-                            "animalFeedStatus"))) {
+                    "animalFeedStatus"))) {
                 String s = AntFarmRpcCall.rpcCall_notifyFriend(loader, animalId, friendFarmId);
                 JSONObject jo = new JSONObject(s);
                 String memo = jo.getString("memo");
